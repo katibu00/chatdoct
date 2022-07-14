@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Unicodeveloper\Paystack\Paystack;
 
@@ -63,35 +66,37 @@ class WalletController extends Controller
 
         $paymentDetails = $paystack->getPaymentData();
 
-dd(123);
+        
+// dd($paymentDetails);
 
         if ($paymentDetails['data']['status'] == 'success') {
 
-            $check = Card::where('email', $paymentDetails['data']['customer']['email'])->where('status','1')->get()->count();
-            if($check == 0){
+           
 
-                $check = Card::where('status', 0)->first();
-                $check->status = '1';
-                $check->email = $paymentDetails['data']['customer']['email'];
-                $check->update();
+            // $data['email'] = $paymentDetails['data']['customer']['email'];
+            // $data['ref'] = $paymentDetails['data']['reference'];
+            // $data['amount'] = $paymentDetails['data']['amount'];
+            // $data['status'] = $paymentDetails['data']['status'];
+            // $data['paid_at'] = $paymentDetails['data']['paid_at'];
 
-            }
+       
+            $user_id = Auth::user()->id;
+            $amount = $paymentDetails['data']['amount']/100;
+
+            $payment = new Payment();
+            $payment->user_id = $user_id;
+            $payment->amount = $amount;
+            $payment->ref = $paymentDetails['data']['reference'];
+            $payment->save();
+
+            $user = User::findorFail($user_id);
+            $user->balance = $user->balance + $amount;
+            $user->update();
+
+            Toastr::success('Payment made Successfully', 'Done');
+            return redirect()->route('wallet');
 
 
-
-
-            $card = Card::where('email', $paymentDetails['data']['customer']['email'])->where('status','1')->latest()->first();
-
-            $data['pin'] = $card->PIN;
-            $data['serial'] = $card->serial;
-            $data['email'] = $paymentDetails['data']['customer']['email'];
-            $data['ref'] = $paymentDetails['data']['reference'];
-            $data['amount'] = $paymentDetails['data']['amount'];
-            $data['status'] = $paymentDetails['data']['status'];
-            $data['paid_at'] = $paymentDetails['data']['paid_at'];
-
-
-            return view('payment.success',$data);
         }
     }
 }

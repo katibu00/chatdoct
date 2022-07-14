@@ -34,54 +34,27 @@
                                 <!--end::Position-->
                                 <!--begin::Info-->
                                 <div class="d-flex flex-wrap flex-center">
-                                    <!--begin::Stats-->
-                                    <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
-                                        <div class="fs-4 fw-bolder text-gray-700">
-                                            <span class="w-75px">&#x20A6;{{number_format($user->price,0)}}</span>
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                            {{-- <span class="svg-icon svg-icon-3 svg-icon-success">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-                                                    <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-                                                </svg>
-                                            </span> --}}
-                                            <!--end::Svg Icon-->
-                                        </div>
-                                        <div class="fw-bold text-muted">Per Hour</div>
-                                    </div>
-                                    <!--end::Stats-->
-                                    <!--begin::Stats-->
-                                    <div class="border border-gray-300 border-dashed rounded py-3 px-3 mx-4 mb-3">
-                                        <div class="fs-4 fw-bolder text-gray-700">
-                                            <span class="w-50px">{{$user->experience}}+</span>
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
-                                            {{-- <span class="svg-icon svg-icon-3 svg-icon-danger">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="black" />
-                                                    <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="black" />
-                                                </svg>
-                                            </span> --}}
-                                            <!--end::Svg Icon-->
-                                        </div>
-                                        <div class="fw-bold text-muted">Work Experience</div>
-                                    </div>
-                                    <!--end::Stats-->
-                                    <!--begin::Stats-->
-                                    {{-- <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
-                                        <div class="fs-4 fw-bolder text-gray-700">
-                                            <span class="w-50px">500</span>
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                            <span class="svg-icon svg-icon-3 svg-icon-success">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-                                                    <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </div>
-                                        <div class="fw-bold text-muted">Hours</div>
-                                    </div> --}}
-                                    <!--end::Stats-->
+                                   <!--begin::Stats-->
+                                <div class="border border-dashed rounded d-flex min-w-125px py-3 px-4 mx-3 mb-3">
+                                    <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
+                                        <svg width="100" height="100" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.207 13.293L7.5 14a5.5 5.5 0 110-11h5a5.5 5.5 0 110 11s-1.807 2.169-4.193 2.818C7.887 16.933 7.449 17 7 17c.291-.389.488-.74.617-1.052C8.149 14.649 7.5 14 7.5 14c.707-.707.708-.707.708-.706h.001l.002.003.004.004.01.01a1.184 1.184 0 01.074.084c.039.047.085.108.134.183.097.15.206.36.284.626.114.386.154.855.047 1.394.717-.313 1.37-.765 1.895-1.201a10.266 10.266 0 001.013-.969l.05-.056.01-.012m0 0A1 1 0 0112.5 13a4.5 4.5 0 100-9h-5a4.5 4.5 0 000 9 1 1 0 01.707.293" clip-rule="evenodd"/>
+                                        </svg>
+                                    </span>
+                                    <div class="fs-6 fw-bolder text-gray-700">&#x20A6;{{number_format($user->chat_rate,0)}}<br /> <span class="fw-bold text-gray-400">/Hour</span></div>
+                                </div>
+                                <!--end::Stats-->
+
+                                   <!--begin::Stats-->
+                                <div class="border border-dashed rounded d-flex min-w-125px py-3 px-4 mx-3 mb-3">
+                                    <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
+                                        <svg width="100" height="100" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.667 5.5c-.645 0-1.167.522-1.167 1.167v6.666c0 .645.522 1.167 1.167 1.167h6.666c.645 0 1.167-.522 1.167-1.167V6.667c0-.645-.522-1.167-1.167-1.167H4.667zM2.5 6.667C2.5 5.47 3.47 4.5 4.667 4.5h6.666c1.197 0 2.167.97 2.167 2.167v6.666c0 1.197-.97 2.167-2.167 2.167H4.667A2.167 2.167 0 012.5 13.333V6.667z" clip-rule="evenodd"/>
+                                            <path fill-rule="evenodd" d="M13.25 7.65l2.768-1.605a.318.318 0 01.482.263v7.384c0 .228-.26.393-.482.264l-2.767-1.605-.502.865 2.767 1.605c.859.498 1.984-.095 1.984-1.129V6.308c0-1.033-1.125-1.626-1.984-1.128L12.75 6.785l.502.865z" clip-rule="evenodd"/>
+                                            </svg>
+                                    </span>
+                                    <div class="fs-6 fw-bolder text-gray-700">&#x20A6;{{number_format($user->video_rate,0)}}<br /> <span class="fw-bold text-gray-400">/Hour</span></div>
+                                </div>
+                                <!--end::Stats-->
+                                   
                                 </div>
                                 <!--end::Info-->
                             </div>
@@ -494,7 +467,9 @@
                                 <div clas="d-flex">
                                     <!--begin::Price-->
                                     <div class="text-end pb-3">
-                                        <span class="text-dark fw-bolder fs-5">&#x20A6;{{number_format($user->price,0)}}</span>
+                                        <span class="text-dark fw-bolder fs-5">Chat: &#x20A6;{{number_format($user->chat_rate,0)}}</span>
+                                        <span class="text-muted fs-7">/hr</span>
+                                        <span class="text-dark fw-bolder fs-5">Video: &#x20A6;{{number_format($user->video_rate,0)}}</span>
                                         <span class="text-muted fs-7">/hr</span>
                                     </div>
                                     <!--end::Price-->
@@ -534,21 +509,28 @@
                                     <!--begin::Action-->
                                     <div class="d-flex flex-stack">
                                         <!--begin::Progress-->
-                                        <div class="d-flex flex-column mw-200px">
+                                        <div class="d-flex  mw-200px">
                                             <div class="d-flex align-items-center mb-2">
                                                 {{-- <span class="text-gray-700 fs-6 fw-bold me-2">90%</span> --}}
-                                                <span class="text-muted fs-8">If you choose to continue, &#x20A6;{{number_format($user->price,0)}} will be dueducted from your account</span>
+                                                <span class="text-muted fs-8">If you choose to continue,the respective fee will be dueducted from your account</span>
                                             </div>
-                                            {{-- <div class="progress h-6px w-200px">
-                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div> --}}
+                                            
                                         </div>
                                         <!--end::Progress-->
                                         <!--begin::Button-->
                                         <form action="{{route('book')}}" method="post">
                                             @csrf
                                             <input type="hidden" name="doctor_id" value="{{$user->id}}">
+                                            <div class="row">
+                                            <select name="book_type" class="form-select form-select-solid mb-3"  data-control="select2" data-placeholder="Select Chat Type..." >
+                                                <option></option>
+                                                <option value="chat">Chat</option>
+                                                <option value="video">Video Call</option>
+                                               
+                                            </select>
+
                                         <button type="submit" class="btn btn-sm btn-primary">Continue</button>
+                                            </div>
                                         </form>
                                         <!--end::Button-->
                                     </div>

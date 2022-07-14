@@ -75,14 +75,27 @@
                             <div class="symbol-group symbol-hover">
                                 <!--begin::User-->
                                 <div class="">
-                                   <a class="btn btn-sm  btn-bg-info btn-active-color-secondary text-white doctor" data-bs-toggle="modal" data-bs-target="#form{{$key}}" data-id="{{$doctor->id}}">View Form</a>
+                                   <a class="btn btn-sm  btn-bg-info btn-active-color-secondary text-white doctor" data-bs-toggle="modal" data-bs-target="#form{{$key}}" data-id="{{$doctor->id}}">Form</a>
                                 </div>
                                 <!--begin::User-->
                                 <!--begin::User-->
                                 <div class="ml-2">
+                                    @if($doctor->book_type == 'chat')
+
                                   <a  href="{{route('doctor.chat')}}" class="btn btn-sm  btn-bg-light btn-active-color-primary">Go to Chat</a>
+                                   
+                                  @else
+
+                                  <a class="btn btn-sm  btn-bg-success ml-1 btn-active-color-info text-white doctor" data-bs-toggle="modal" data-bs-target="#link{{$key}}" data-id="{{$doctor->id}}">Link</a>
+
+                                  @endif
+                                  
                                 </div>
                                 <!--begin::User-->
+
+                                <div class="">
+                                    <a class="btn btn-sm  btn-bg-primary ml-1 btn-active-color-secondary text-white subs" data-bs-toggle="modal" data-bs-target="#subscription" data-id="{{$doctor->id}}">Subs</a>
+                                 </div>
                                
                             </div>
                             <!--end::Users-->
@@ -405,6 +418,92 @@
             </div>
             <!--end::Modal - View Details-->
 
+
+
+
+        <!--begin::Modal -Link -->
+        <div class="modal fade" id="link{{$key}}" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Form-->
+                    <form class="form" action="{{route('link')}}" id="kt_modal_new_address_form" method="post">
+                        @csrf
+                        <!--begin::Modal header-->
+                        <div class="modal-header" id="kt_modal_new_address_header">
+                        <!--begin::Modal title-->
+                        <h2>Send Video Chat Link to {{$doctor['patient']['first_name']}}  {{$doctor['patient']['middle_name']}}  {{$doctor['patient']['last_name']}}</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body py-10 px-lg-17">
+                        <!--begin::Scroll-->
+                        <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
+                            
+          
+    
+                            <!--begin::Input group-->
+                            <div class="row mb-5">
+                            <!--begin::Col-->
+                            <div class="col-md-12 fv-row">
+                                <!--begin::Label-->
+                                <label class="required fs-5 fw-bold mb-2">Link</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <textarea name="link" class="form-control form-control-lg form-control-solid">{{$doctor->link}}</textarea>
+                                <input type="hidden" name="get_id" value="{{$doctor->id}}" />
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+    
+    
+                               
+    
+                        </div>
+                        <!--end::Scroll-->
+                        </div>
+                        <!--end::Modal body-->
+                        <!--begin::Modal footer-->
+                        <div class="modal-footer flex-center">
+                        <!--begin::Button-->
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Cancel</button>
+                        <!--end::Button-->
+                        <!--begin::Button-->
+                        <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
+                            <span class="indicator-label">Submit</span>
+                        </button>
+                        <!--end::Button-->
+                        </div>
+                        <!--end::Modal footer-->
+                    </form>
+                    <!--end::Form-->
+                </div>
+            </div>
+            </div>
+            <!--end::Modal - New Faculty-->
+
+
+
+
+
+
+
                 @endforeach
            
             </div>
@@ -412,7 +511,152 @@
         </div>
         <!--end::Container-->
 
+
+
+
+            <!--begin::Modal - New faculty-->
+            <div class="modal fade" id="subscription" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Form-->
+                    <form class="form" action="{{route('prescription')}}" id="kt_modal_new_address_form" method="post">
+                        @csrf
+                        <!--begin::Modal header-->
+                        <div class="modal-header" id="kt_modal_new_address_header">
+                        <!--begin::Modal title-->
+                        <h2>Send prescription to <span id="pname"></span></h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body py-10 px-lg-17">
+                        <!--begin::Scroll-->
+                        <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
+                            <input type="hidden" name="get_id" id="get_id"/>
+                            <!--begin::Input group-->
+                            <div class="row mb-5 add_item">
+                                <!--begin::Col-->
+                                <div class="col-md-9 fv-row my-2">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Medicine</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text"  class="form-control form-control-solid" placeholder="Medicine" name="name[]" required>
+                                      <!--end::Input-->
+                                </div>
+                               
+                                <div class="form-group col-md-1 mx-1" style="padding-top: 35px;">
+                                    <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle"></i></span>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Scroll-->
+                        </div>
+                        <!--end::Modal body-->
+                        <!--begin::Modal footer-->
+                        <div class="modal-footer flex-center">
+                        <!--begin::Button-->
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Cancel</button>
+                        <!--end::Button-->
+                        <!--begin::Button-->
+                        <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
+                            <span class="indicator-label">Submit</span>
+                        </button>
+                        <!--end::Button-->
+                        </div>
+                        <!--end::Modal footer-->
+                    </form>
+                    <!--end::Form-->
+
+                        <div style="visibility: hidden;">
+                        <div class="whole_extra_item_add" id="whole_extra_item_add">
+                            <div class="delete_whole_extra_item_add" id="delete_whole_extra_item_add">
+                                <div class="row">
+                                    
+                                    <div class="fv-row col-md-9 my-2">
+                                        <input type="text"  class="form-control form-control-solid" placeholder="Medicine" name="name[]" required>
+                                    </div>
+                                <div class="form-group col-md-3 " style="padding-top: 10px;">
+                                    <span class="btn btn-success btn-sm addeventmore"><i class="fa fa-plus-circle"></i></span>
+                                    <span class="btn btn-danger btn-sm removeeventmore"><i class="fa fa-minus-circle"></i></span>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            <!--end::Modal - New Faculty-->
+
     </div>
     <!--end::Post-->
                     
 @endsection
+
+
+@section('js')
+<script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/assets/js/custom/apps/user-management/users/list/table.js"></script>
+<script src="/assets/js/custom/apps/subscriptions/list/export.js"></script>
+<script src="/assets/js/custom/apps/subscriptions/list/list.js"></script>
+<script src="/assets/js/custom/widgets.js"></script>
+
+<script>
+
+    $(document).ready(function(){
+        var counter = 0;
+        $(document).on("click",".addeventmore", function(){
+            var whole_extra_item_add = $("#whole_extra_item_add").html();
+            $(this).closest(".add_item").append(whole_extra_item_add);
+            counter++
+        });
+        $(document).on("click", ".removeeventmore", function(event){
+             $(this).closest(".delete_whole_extra_item_add").remove();
+             counter -= 1;
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+   $('.subs').click(function(){
+      const id = $(this).attr('data-id');
+ 
+      $.ajax({
+         url: 'get-data',
+         type: 'GET',
+         data: {
+            "id": id
+         },
+         success: function(data){
+        
+            
+           
+            $('#get_id').val(data.id);
+            $('#pname').html(data.patient.first_name+' '+data.patient.last_name);
+           
+           
+         }
+      })
+   });
+});
+</script>
+ @endsection

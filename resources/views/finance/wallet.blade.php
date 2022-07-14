@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('PageTitle','Settings')
+@section('PageTitle','Wallet')
 @section('content')
 @php
     $user = Auth::user();
@@ -80,41 +80,8 @@
                                 <!--begin::Actions-->
                                 <div class="d-flex my-4">
                               
-                                    <a href="#" class="btn btn-sm btn-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_offer_a_deal">Fund Wallet</a>
-                                    <!--begin::Menu-->
-                                    <div class="me-0">
-                                        <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <i class="bi bi-three-dots fs-3"></i>
-                                        </button>
-                                        <!--begin::Menu 3-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-                                            <!--begin::Heading-->
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Payments</div>
-                                            </div>
-                                            <!--end::Heading-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Generate Invoice</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link flex-stack px-3">Make Payment
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Transaction History</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                       
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu 3-->
-                                    </div>
-                                    <!--end::Menu-->
+                                    <a href="{{route('profile.settings', Auth::user()->id)}}" class="btn btn-sm btn-primary me-3">Profile settings</a>
+                             
                                 </div>
                                 <!--end::Actions-->
                             </div>
@@ -137,7 +104,7 @@
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->
-                                                <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{$user->balance}}" data-kt-countup-prefix="&#x20A6;">0</div>
+                                                <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{$user->balance}}" data-kt-countup-prefix="&#x20A6;">{{number_format($user->balance,0)}}</div>
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
@@ -189,17 +156,7 @@
                                     <!--end::Stats-->
                                 </div>
                                 <!--end::Wrapper-->
-                                <!--begin::Progress-->
-                                <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                                    <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                        <span class="fw-bold fs-6 text-gray-400">Profile Compleation</span>
-                                        <span class="fw-bolder fs-6">50%</span>
-                                    </div>
-                                    <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                        <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <!--end::Progress-->
+                             
                             </div>
                             <!--end::Stats-->
                         </div>
@@ -313,12 +270,8 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <select name="amount" aria-label="Select Sex" data-control="select2" data-placeholder="Select Amount.." class="form-select form-select-solid form-select-lg">
-                                        <option value=""></option>
-                                        <option  value="1000">1000</option>
-                                        <option  value="1500" selected>1500</option>
-                                        <option  value="2000">2000</option>
-                                    </select>                                
+                                    <input type="number" name="amount" class="form-control form-control-lg form-control-solid" placeholder="Enter the amount"  />
+                           
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -332,8 +285,7 @@
                         <!--end::Card body-->
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Proceed to Payment</button>
                         </div>
                         <!--end::Actions-->
                     </form>

@@ -17,6 +17,8 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->integer('patient_id');
             $table->integer('doctor_id');
+            $table->string('book_type');
+            $table->string('link')->nullable();
             $table->integer('prescription')->default(0);
             $table->integer('pre_consultation')->default(0);
             $table->integer('status')->default(1);

@@ -2,135 +2,127 @@
 @section('PageTitle','Contact Us')
 @section('content')
 
-<div role="main" class="main">
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
 
-    <section class="page-header page-header-modern bg-color-light-scale-1 page-header-md m-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 order-2 order-md-1 align-self-center p-static">
-                    <h1 class="text-dark font-weight-bold text-9 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="100">Contact Us</h1>
+            <div class="row align-items-stretch col-mb-50 mb-0">
+                <!-- Contact Form
+                ============================================= -->
+                <div class="col-lg-6">
+
+                    <div class="fancy-title title-border">
+                        <h3>Send us an Email</h3>
+                    </div>
+
+                    <div class="form-widget">
+
+                        <div class="form-result"></div>
+
+                        <form class="mb-0" id="template-contactform" name="template-contactform" action="include/form.php" method="post">
+
+                            <div class="form-process">
+                                <div class="css3-spinner">
+                                    <div class="css3-spinner-scaler"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 form-group">
+                                    <label for="template-contactform-name">Name <small>*</small></label>
+                                    <input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label for="template-contactform-email">Email <small>*</small></label>
+                                    <input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label for="template-contactform-phone">Phone</label>
+                                    <input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
+                                </div>
+
+                                <div class="w-100"></div>
+
+                                <div class="col-md-12 form-group">
+                                    <label for="template-contactform-subject">Subject <small>*</small></label>
+                                    <input type="text" id="template-contactform-subject" name="subject" value="" class="required sm-form-control" />
+                                </div>
+
+                     
+
+                                <div class="w-100"></div>
+
+                                <div class="col-12 form-group">
+                                    <label for="template-contactform-message">Message <small>*</small></label>
+                                    <textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+                                </div>
+
+                                <div class="col-12 form-group d-none">
+                                    <input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d m-0">Submit Comment</button>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="prefix" value="template-contactform-">
+
+                        </form>
+                    </div>
+
+                </div><!-- Contact Form End -->
+
+                <!-- Google Map
+                ============================================= -->
+                <div class="col-lg-6 min-vh-50">
+                    <div class="gmap h-100" data-address="Melbourne, Australia" data-markers='[{address: "Melbourne, Australia", html: "<div class=\"p-2\" style=\"width: 300px;\"><h4 class=\"mb-2\">Hi! We are <span>Envato!</span></h4><p class=\"mb-0\" style=\"font-size:1rem;\">Our mission is to help people to <strong>earn</strong> and to <strong>learn</strong> online. We operate <strong>marketplaces</strong> where hundreds of thousands of people buy and sell digital goods every day.</p></div>", icon:{ image: "images/icons/map-icon-red.png", iconsize: [32, 39], iconanchor: [32,39] } }]'></div>
+                </div><!-- Google Map End -->
+            </div>
+
+            <!-- Contact Info
+            ============================================= -->
+            <div class="row col-mb-50">
+                <div class="col-sm-6 col-lg-4">
+                    <div class="feature-box fbox-center fbox-bg fbox-plain">
+                        <div class="fbox-icon">
+                            <a href="#"><i class="icon-map-marker2"></i></a>
+                        </div>
+                        <div class="fbox-content">
+                            <h3>Our Headquarters<span class="subtitle">No. 15 Gubi Dam Junction, Maiduguri Road, Bauchi, Bauchi State.</span></h3>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 order-1 order-md-2 align-self-center">
-                    <ul class="breadcrumb d-block text-md-end appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="300">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Contact Us</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
-    <div id="googlemaps" class="google-map m-0"></div>
-
-    <div class="container py-5">
-        <div class="row">
-            <div class="col pt-3">
-
-                <h3 class="text-color-quaternary font-weight-bold text-capitalize mb-2">Contact Info</h3>
-                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero id nisi euismod, sed porta est consectetur. Vestibulum auctor felis eget orci semper vestibulum. Pellentesque ultricies nibh gravida, accumsan libero luctus, molestie nunc.</p>
-
-                <div class="row text-center pb-3 pt-4">
-                    <div class="col-lg-3 col-md-6 pb-4 pb-lg-0">
-                        <img width="60" src="img/demos/medical-2/icons/icon-location.svg" alt="" />
-                        <h4 class="m-0 pt-4 font-weight-bold">Address</h4>
-                        <p class="m-0">123 Street Name, City, England</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 pb-4 pb-lg-0">
-                        <img width="60" src="img/demos/medical-2/icons/icon-phone.svg" alt="" />
-                        <h4 class="m-0 pt-4 font-weight-bold">Phone Number</h4>
-                        <p class="m-0"><a href="tel:+1234567890" class="text-color-default text-color-hover-primary">(800) 123-4567</a></p>
-                    </div>
-                    <div class="col-lg-3 col-md-6 pb-4 pb-md-0">
-                        <img width="60" src="img/demos/medical-2/icons/icon-envelope.svg" alt="" />
-                        <h4 class="m-0 pt-4 font-weight-bold">E-mail Address</h4>
-                        <p class="m-0"><a href="mailto:mail@domain.com" class="text-default text-hover-primary">mail@example.com</a></p>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <img width="60" src="img/demos/medical-2/icons/icon-calendar.svg" alt="" />
-                        <h4 class="m-0 pt-4 font-weight-bold">Working Days/Hours</h4>
-                        <p class="m-0">Mon - Sun / 9:00AM - 8:00PM</p>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="feature-box fbox-center fbox-bg fbox-plain">
+                        <div class="fbox-icon">
+                            <a href="#"><i class="icon-phone3"></i></a>
+                        </div>
+                        <div class="fbox-content">
+                            <h3>Speak to Us<span class="subtitle">+234 806 178 9101, +234 809 697 8454</span></h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
-                <hr class="my-5">
-            </div>
-        </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="feature-box fbox-center fbox-bg fbox-plain">
+                        <div class="fbox-icon">
+                            <a href="#"><i class="icon-skype2"></i></a>
+                        </div>
+                        <div class="fbox-content">
+                            <h3>Email Us<span class="subtitle">support@chatdoct.com</span></h3>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="row">
-            <div class="col">
-                <h3 class="text-color-quaternary font-weight-bold text-capitalize mb-2">Send a Message</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla volutpat ex finibus urna tincidunt, auctor ullamcorper risus luctus.</p>
+    
+            </div><!-- Contact Info End -->
 
-                <form class="contact-form custom-form-style-1 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="100" action="php/contact-form.php" method="POST">
-                    <div class="contact-form-success alert alert-success d-none mt-4">
-                        <strong>Success!</strong> Your message has been sent to us.
-                    </div>
-
-                    <div class="contact-form-error alert alert-danger d-none mt-4">
-                        <strong>Error!</strong> There was an error sending your message.
-                        <span class="mail-error-message text-1 d-block"></span>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-lg-6">
-                            <input type="text" placeholder="Your Name" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" required>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input type="email" placeholder="Your E-mail" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <input placeholder="Subject" type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <textarea placeholder="Your Message..." maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" name="message" required></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <input type="submit" value="Send Message" class="btn btn-primary px-4 py-3 text-center text-uppercase font-weight-semibold" data-loading-text="Loading...">
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
-
-    <section class="footer-top-info">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-12 col-xl-4 p-4 bg-color-secondary d-flex align-items-center justify-content-between">
-                    <div class="footer-top-info-detail">
-                        <h4 class="text-color-light mb-1 d-block font-weight-semibold text-capitalize appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="100">Emergency Cases</h4>
-                        <p class="d-block m-0 footer-top-info-desc appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <a href="#" type="button" class="btn btn-outline btn-footer-top-info btn-light rounded-0 d-block text-color-light border-color-primary text-uppercase text-center p-0 custom-btn-footer-top-info bg-transparent-hover appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="300">view more +</a>
-                </div>
-                <div class="col-xs-12 col-xl-4 p-4 bg-color-tertiary d-flex align-items-center justify-content-between">
-                    <div class="footer-top-info-detail">
-                        <h4 class="text-color-light mb-1 d-block font-weight-semibold text-capitalize appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="400">Doctors Timetable</h4>
-                        <p class="d-block m-0 footer-top-info-desc appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <a href="#" type="button" class="btn btn-outline btn-footer-top-info btn-light rounded-0 d-block text-color-light border-color-primary text-uppercase text-center p-0 custom-btn-footer-top-info bg-transparent-hover appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="600">view more +</a>
-                </div>
-                <div class="col-xs-12 col-xl-4 p-4 bg-color-secondary d-flex align-items-center justify-content-between">
-                    <div class="footer-top-info-detail">
-                        <h4 class="text-color-light mb-1 d-block font-weight-semibold text-capitalize appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="700">Find Us On Map</h4>
-                        <p class="d-block m-0 footer-top-info-desc appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <a href="#" type="button" class="btn btn-outline btn-footer-top-info btn-light rounded-0 d-block text-color-light border-color-primary text-uppercase text-center p-0 custom-btn-footer-top-info bg-transparent-hover appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="900">view more +</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-</div>
+</section><!-- #content end -->
 
 @endsection

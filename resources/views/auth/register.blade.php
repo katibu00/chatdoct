@@ -4,17 +4,16 @@
 	<!--begin::Head-->
 	<head><base href="../../../">
 		<title>ChatDoc - Create an Account</title>
-		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free." />
-		<meta name="keywords" content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
+		<meta name="description" content="Chatdoc is a social enterprise that helps underserviced communities in Nigeria to access qualitative healthcare virtually through Telemedicine." />
+		<meta name="keywords" content="chatdoc, chat a doctor, doctor, chatting with a doctor, telemedicine, " />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta charset="utf-8" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<meta property="og:title" content="" />
+		<meta property="og:url" content="https://chatdoct.com" />
+		<meta property="og:site_name" content="ChatDoct | Chatdoc" />
+		<link rel="shortcut icon" href="/uploads/logo.jpg" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -53,17 +52,6 @@
 								<!--end::Link-->
 							</div>
 							<!--end::Heading-->
-							<!--begin::Action-->
-							<button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-							<img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Sign in with Google</button>
-							<!--end::Action-->
-							<!--begin::Separator-->
-							<div class="d-flex align-items-center mb-10">
-								<div class="border-bottom border-gray-300 mw-50 w-100"></div>
-								<span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
-								<div class="border-bottom border-gray-300 mw-50 w-100"></div>
-							</div>
-							<!--end::Separator-->
 							<!--begin::Input group-->
 							<div class="row fv-row mb-7">
 								<!--begin::Col-->
@@ -79,7 +67,7 @@
 								</div> --}}
 								<div class="col-xl-6">
 									<label class="form-label fw-bolder text-dark fs-6">First Name</label>
-									<input class="form-control form-control-lg form-control-solid  @error('first_name') is-invalid @enderror" type="text" id="first_name" placeholder="" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus />
+									<input class="form-control form-control-lg form-control-solid  @error('first_name') is-invalid @enderror" type="text" id="first_name" placeholder="First Name" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus />
 									@error('first_name')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -89,8 +77,8 @@
 								<!--end::Col-->
 								<!--begin::Col-->
 								<div class="col-xl-6">
-									<label class="form-label fw-bolder text-dark fs-6">Surname Name</label>
-									<input class="form-control form-control-lg form-control-solid  @error('last_name') is-invalid @enderror" type="text" id="last_name" placeholder="" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus />
+									<label class="form-label fw-bolder text-dark fs-6">Last Name</label>
+									<input class="form-control form-control-lg form-control-solid  @error('last_name') is-invalid @enderror" type="text" id="last_name" placeholder="Last Name" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus />
 									@error('last_name')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
@@ -103,7 +91,7 @@
 							<!--begin::Input group-->
 							<div class="fv-row mb-7">
 								<label class="form-label fw-bolder text-dark fs-6">Email</label>
-                                <input id="email" type="email" class="form-control form-control-lg form-control-solid  @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control form-control-lg form-control-solid  @error('email') is-invalid @enderror" name="email" placeholder="Enter your Email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -121,7 +109,7 @@
 									<!--end::Label-->
 									<!--begin::Input wrapper-->
 									<div class="position-relative mb-3">
-                                        <input id="password" type="password" class="form-control form-control-lg form-control-solid @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <input id="password" type="password" class="form-control form-control-lg form-control-solid @error('password') is-invalid @enderror" placeholder="Enter Password" name="password" required autocomplete="new-password">
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -155,15 +143,7 @@
                                 <input id="password-confirm" type="password" class="form-control form-control-lg form-control-solid" name="password_confirmation" required autocomplete="new-password">
 							</div>
 							<!--end::Input group-->
-							<!--begin::Input group-->
-							<div class="fv-row mb-10">
-								<label class="form-check form-check-custom form-check-solid form-check-inline">
-									<input class="form-check-input" type="checkbox" name="toc" value="1" />
-									<span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
-									<a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
-								</label>
-							</div>
-							<!--end::Input group-->
+						
 							<!--begin::Actions-->
 							<div class="text-center">
 								<button type="submit"  class="btn btn-lg btn-primary">
@@ -182,9 +162,9 @@
 				<div class="d-flex flex-center flex-column-auto p-10">
 					<!--begin::Links-->
 					<div class="d-flex align-items-center fw-bold fs-6">
-						<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-						<a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-						<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
+						<a href="https://chatdoct.com" class="text-muted text-hover-primary px-2">Home</a>
+						<a href="{{route('about')}}" class="text-muted text-hover-primary px-2">About</a>
+						<a href="{{route('contact')}}" class="text-muted text-hover-primary px-2">Contact Us</a>
 					</div>
 					<!--end::Links-->
 				</div>

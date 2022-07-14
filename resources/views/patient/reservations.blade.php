@@ -22,7 +22,7 @@
             <!--begin::Row-->
             <div class="row g-6 g-xl-9">
 
-                @foreach ($doctors as $doctor)
+                @foreach ($doctors as $key => $doctor)
                     
                 <!--begin::Col-->
                 <div class="col-md-6 col-xl-4">
@@ -57,6 +57,7 @@
                             <!--end::Description-->
                             <!--begin::Info-->
                             <div class="d-flex flex-wrap mb-5">
+                                <div class="row">
                                 <!--begin::Due-->
                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
                                     @if($doctor->pre_consultation == 1)
@@ -64,10 +65,20 @@
                                     @else
                                     <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
                                     @endif
-                                    <div class="fw-bold text-gray-400">Pre Consultation Form</div>
+                                    <div class="fw-bold text-gray-400">Pre-consultation Form</div>
                                 </div>
                                 <!--end::Due-->
-                               
+                                <!--begin::Due-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
+                                    @if($doctor->prescription == 1)
+                                    <i style="font-size: 40px; color: green;"  class="las la-check-square"></i>
+                                    @else
+                                    <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
+                                    @endif
+                                    <div class="fw-bold text-gray-400">Prescription</div>
+                                </div>
+                                <!--end::Due-->
+                                </div>
                             </div>
                             <!--end::Info-->
                       
@@ -78,11 +89,22 @@
                                    <a class="btn btn-sm  btn-bg-info btn-active-color-info text-white doctor" data-bs-toggle="modal" data-bs-target="#form" data-id="{{$doctor->id}}">Fill Form</a>
                                 </div>
                                 <!--begin::User-->
+                                @if($doctor->book_type == 'chat')
                                 <!--begin::User-->
-                                <div class="ml-2" data-bs-toggle="tooltip" title="Open Chat with Doctor">
-                                  <a  href="{{route('chats')}}" class="btn btn-sm  btn-bg-light btn-active-color-primary">Go to Chat</a>
+                                <div class="ml-1" data-bs-toggle="tooltip" title="Open chat with the doctor">
+                                  <a  href="{{route('chats')}}" class="btn btn-sm  btn-bg-light btn-active-color-primary">Chat</a>
                                 </div>
                                 <!--begin::User-->
+                                @else
+                                <div class="ml-1" data-bs-toggle="tooltip" title="View and copy the video conference link sent by the doctor">
+                                    <a class="btn btn-sm  btn-bg-primary mx-1 btn-active-color-secondary text-white doctor" data-bs-toggle="modal" data-bs-target="#link{{$key}}" data-id="{{$doctor->id}}">Link</a>
+                                </div>
+                                @endif
+                                @if($doctor->prescription == 1)
+                                <div class="" data-bs-toggle="tooltip" title="Download the prescription form issued by the doctor">
+                                    <a class="btn btn-sm  btn-bg-success  btn-active-color-secondary text-white doctor" href="{{route('download',$doctor->id)}}">Download</a>
+                                </div>
+                                @endif
                                
                             </div>
                             <!--end::Users-->
@@ -93,6 +115,80 @@
                 </div>
                 <!--end::Col-->
 
+
+
+         <!--begin::Modal -Link -->
+        <div class="modal fade" id="link{{$key}}" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Form-->
+                    
+                        <!--begin::Modal header-->
+                        <div class="modal-header" id="kt_modal_new_address_header">
+                        <!--begin::Modal title-->
+                        <h2>Video Chat Link from Dr. {{$doctor['book']['first_name']}}  {{$doctor['book']['middle_name']}}  {{$doctor['book']['last_name']}}</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body py-10 px-lg-17">
+                        <!--begin::Scroll-->
+                        <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
+                            
+          
+    
+                            <!--begin::Input group-->
+                            <div class="row mb-5">
+                            <!--begin::Col-->
+                            <div class="col-md-12 fv-row">
+                                <!--begin::Label-->
+                                <label class="required fs-5 fw-bold mb-2">Link</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <textarea name="link" class="form-control form-control-lg form-control-solid" readonly>{{$doctor->link==""? 'Link Not yet Sent.':$doctor->link}}</textarea>
+                              
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Input group-->
+    
+
+    
+                        </div>
+                        <!--end::Scroll-->
+                        </div>
+                        <!--end::Modal body-->
+                        <!--begin::Modal footer-->
+                        <div class="modal-footer flex-center">
+                        <!--begin::Button-->
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">OK</button>
+                        <!--end::Button-->
+                        
+                        </div>
+                        <!--end::Modal footer-->
+                    
+                    <!--end::Form-->
+                </div>
+            </div>
+            </div>
+            <!--end::Modal - New Faculty-->
+
+
                 @endforeach
            
             </div>
@@ -101,7 +197,7 @@
         <!--end::Container-->
 
 
-        <!--begin::Modal - New faculty-->
+        <!--begin::Modal - -->
         <div class="modal fade" id="form" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
         <div class="modal-dialog modal-dialog-centered mw-650px">

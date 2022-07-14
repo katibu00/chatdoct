@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Prescription;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -57,4 +58,44 @@ class DoctorController extends Controller
 
         return view('test2');
     }
+
+    public function link(Request $request){
+
+        $link = Booking::findorFail($request->get_id);
+        $link->link = $request->link;
+        $link->update();
+
+        Toastr::success('Link sent sucessfully', 'Done');
+        return redirect()->back();
+    }
+
+    public function prescription(Request $request){
+// dd($request->all());
+
+        $check = Prescription::where('booking_id',$request->get_id)->first();
+        if($check){
+            Toastr::error('Prescription has Already been sent', 'Not Allowed');
+            return redirect()->back();
+        }
+      
+        $nameCount = count($request->name);
+        if($nameCount != NULL){
+            for ($i=0; $i < $nameCount; $i++){
+                $prescription = new Prescription();
+                $prescription->booking_id = $request->get_id;
+                $prescription->name = $request->name[$i];
+                $prescription->save();
+            }
+        }
+
+        $book = Booking::findorFail($request->get_id);
+        $book->prescription = 1;
+        $book->update();
+
+        Toastr::success('Prescriptiuon Sent sucessfully', 'Done');
+        return redirect()->back();
+    }
+
+
+
 }

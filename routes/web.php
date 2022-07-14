@@ -1,7 +1,12 @@
 <?php
 
 use App\Events\TestEvent;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +21,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('front.index');
-});
+    if(auth()->check()){
+        if(Auth::user()->role == 'admin'){
+            return redirect()->route('admin.home');
+        }
+        if(Auth::user()->role == 'patient'){
+            return redirect()->route('patient.home');
+        }
+        if(Auth::user()->role == 'doctor'){
+            return redirect()->route('doctor.home');
+        }
+        if(Auth::user()->role == 'pending'){
+            return redirect()->route('pending.home');
+        }
+    };
+    $data['doctors'] = User::where('role','doctor')->where('status',1)->get();
+    return view('front.index',$data);
+
+})->name('homepage');
 
 
 Route::get('/about-us', [PagesController::class, 'about'])->name('about');
@@ -30,14 +51,32 @@ Route::get('/chats', function () {
 })->name('chats');
 
 
-Auth::routes();
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/change/password', [ChangepasswordController::class, 'index'])->name('change.password');
+Route::post('/change/password', [ChangepasswordController::class, 'change']);
+
+Route::group(['middleware' => ['auth', 'admin']], function(){
+    Route::get('/home', [HomeController::class, 'admin'])->name('admin.home');
+});
+
+Route::group(['prefix' => '', 'middleware' => ['auth']], function(){
+    Route::get('/patient', [HomeController::class, 'patient'])->name('patient.home');
+    Route::get('/doctor', [HomeController::class, 'doctor'])->name('doctor.home');
+});
 
 
 
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function(){
 
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/userList', [App\Http\Controllers\MessageController::class, 'userlist'])->name('userList');
     Route::get('/usermessage/{id}', [App\Http\Controllers\MessageController::class, 'user_message'])->name('usermessage');
     Route::post('sendmessage', [App\Http\Controllers\MessageController::class, 'send_message'])->name('user.message.send');
@@ -56,41 +95,52 @@ Route::post('/doctor/application', [App\Http\Controllers\DoctorApplicationContro
 Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function(){
 
     Route::get('/applications', [App\Http\Controllers\UsersController::class, 'applicationsIndex'])->name('doctors.applications');
+    Route::get('/doctors', [App\Http\Controllers\UsersController::class, 'doctorsIndex'])->name('users.doctors.index');
+    Route::get('/patients', [App\Http\Controllers\UsersController::class, 'patientsIndex'])->name('users.patients.index');
+    Route::get('/admins', [App\Http\Controllers\UsersController::class, 'adminsIndex'])->name('users.admins.index');
     Route::get('/doctors/applications/submit/{id}', [App\Http\Controllers\UsersController::class, 'ApproveRequest'])->name('doctors.applications.submit');
 
 });
 
-//Routes copied 
-Route::get('/showDoctor', function () {
-    return view('doctor_profile');
-})->name('showDoctor');
+// //Routes copied 
+// Route::get('/showDoctor', function () {
+//     return view('doctor_profile');
+// })->name('showDoctor');
 
-Route::get('/doctorsList', function () {
-    return view('doctors_list');
-})->name('doctorsList');
+// Route::get('/doctorsList', function () {
+//     return view('doctors_list');
+// })->name('doctorsList');
 
-Route::get('/medicalDevices', function () {
-    return view('medical_devices');
-})->name('medicalDevices');
-Route::get('/index', function () {
-    return view('home');
-})->name('index');
+// Route::get('/medicalDevices', function () {
+//     return view('medical_devices');
+// })->name('medicalDevices');
+// Route::get('/index', function () {
+//     return view('home');
+// })->name('index');
+
+
+
+
+Route::get('/doctor/profile/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
+
 
 //patient routes
 Route::group(['prefix' => 'patient', 'middleware' => ['auth']], function(){
 
     Route::get('/doctors', [App\Http\Controllers\PatientController::class, 'DoctorsIndex'])->name('doctors.index');
-    Route::get('/doctors/details/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
+    // Route::get('/doctors/details/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
 
     Route::post('/book', [App\Http\Controllers\PatientController::class, 'BookDoctor'])->name('book');
     Route::get('/reservations', [App\Http\Controllers\PatientController::class, 'MyReservations'])->name('reservations');
     Route::post('/reservations', [App\Http\Controllers\PatientController::class, 'PreFormSave'])->name('reservations');
     Route::get('/wallet', [App\Http\Controllers\WalletController::class, 'index'])->name('wallet');
 
+    Route::get('/prescription/download/{id}', [App\Http\Controllers\PatientController::class, 'download'])->name('download');
+
 });
 
 Route::post('/pay', [App\Http\Controllers\WalletController::class, 'redirectToGateway'])->name('pay');
-Route::get('/payment/callback', 'WalletController@handleGatewayCallback');
+Route::get('/payment/callback', [App\Http\Controllers\WalletController::class, 'handleGatewayCallback']);
 
 //doctor routes
 Route::group(['prefix' => 'doctor', 'middleware' => ['auth']], function(){
@@ -105,8 +155,12 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['auth']], function(){
     Route::get('/patients', [App\Http\Controllers\DoctorController::class, 'MyPatients'])->name('doctor.patients');
     Route::get('/chat/patients', [App\Http\Controllers\DoctorController::class, 'Chat'])->name('doctor.chat');
 
+    Route::post('/link', [App\Http\Controllers\DoctorController::class, 'link'])->name('link');
+    Route::post('/prescription', [App\Http\Controllers\DoctorController::class, 'prescription'])->name('prescription');
+
 });
 
 
 //get routes
 Route::get('/get-data', [App\Http\Controllers\PatientController::class, 'GetData'])->name('get-data');
+

@@ -23,4 +23,17 @@ class UsersController extends Controller
         Toastr::success('The user has been Approved as Doctor sucessfully', 'Done');
         return redirect()->back();
     }
+
+    public function doctorsIndex(){
+        $data['users'] = User::where('role','doctor')->where('status',1)->get();
+        return view('users.doctors',$data);
+    }
+    public function patientsIndex(){
+        $data['users'] = User::where('role','patient')->get();
+        return view('users.patients',$data);
+    }
+    public function adminsIndex(){
+        $data['users'] = User::where('role','admin')->get();
+        return view('users.admins',$data);
+    }
 }

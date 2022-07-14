@@ -22,7 +22,7 @@ $user = Auth::user()->role;
                 @if($user == "admin")
 
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo1/dist/apps/calendar.html">
+                    <a class="menu-link {{($route=='admin.home')?'active':''}}" href="{{route('admin.home')}}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -38,7 +38,7 @@ $user = Auth::user()->role;
                     </a>
                 </div>
 
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{($prefix=='/users')?'show':''}} ">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/communication/com012.svg-->
@@ -56,7 +56,7 @@ $user = Auth::user()->role;
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/private.html">
+                            <a class="menu-link {{($route=='users.doctors.index')?'active':''}}" href="{{route('users.doctors.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -64,7 +64,7 @@ $user = Auth::user()->role;
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/group.html">
+                            <a class="menu-link {{($route=='users.patients.index')?'active':''}}" href="{{route('users.patients.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -72,7 +72,7 @@ $user = Auth::user()->role;
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/drawer.html">
+                            <a class="menu-link {{($route=='users.admins.index')?'active':''}}" href="{{route('users.admins.index')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -80,7 +80,7 @@ $user = Auth::user()->role;
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="{{route('doctors.applications')}}">
+                            <a class="menu-link {{($route=='doctors.applications')?'active':''}}" href="{{route('doctors.applications')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -112,7 +112,7 @@ $user = Auth::user()->role;
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/private.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -120,7 +120,7 @@ $user = Auth::user()->role;
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/group.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -128,7 +128,7 @@ $user = Auth::user()->role;
                             </a>
                         </div>
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/drawer.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -158,7 +158,7 @@ $user = Auth::user()->role;
                     </span>
                     <div class="menu-sub menu-sub-accordion">
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/apps/chat/private.html">
+                            <a class="menu-link" href="">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -178,7 +178,7 @@ $user = Auth::user()->role;
                 @if($user == "pending")
 
                 <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -188,7 +188,7 @@ $user = Auth::user()->role;
 
 
                 <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -199,7 +199,7 @@ $user = Auth::user()->role;
                 
 
                 <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -215,9 +215,9 @@ $user = Auth::user()->role;
                 @if($user == "patient")
 
                 <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                    <a class="menu-link {{($route=='patient.home')?'active':''}}" href="{{route('patient.home')}}">
                         <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
+                            <span class="fa fa-home"></span>
                         </span>
                         <span class="menu-title">Home</span>
                     </a>
@@ -226,7 +226,7 @@ $user = Auth::user()->role;
                 <div class="menu-item">
                     <a class="menu-link {{($route=='doctors.index')?'active':''}} {{($route=='doctors.details')?'active':''}}" href="{{route('doctors.index')}}">
                         <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
+                            <span class="fa fa-stethoscope"></span>
                         </span>
                         <span class="menu-title">Doctors</span>
                     </a>
@@ -235,14 +235,14 @@ $user = Auth::user()->role;
                 <div class="menu-item">
                     <a class="menu-link {{($route=='reservations')?'active':''}}" href="{{route('reservations')}}">
                         <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
+                            <span class="fa fa-calendar"></span>
                         </span>
                         <span class="menu-title">My Reservations</span>
                     </a>
                 </div>
 
-                <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                {{-- <div class="menu-item">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
@@ -251,20 +251,28 @@ $user = Auth::user()->role;
                 </div>
 
                 <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                    <a class="menu-link" href="#">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">Test Request</span>
                     </a>
-                </div>
+                </div> --}}
 
                 <div class="menu-item">
                     <a class="menu-link {{($route=='wallet')?'active':''}}" href="{{route('wallet')}}">
                         <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
+                            <span class="fa fa-coins"></span>
                         </span>
                         <span class="menu-title">Wallet</span>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link {{($route=='profile.settings')?'active':''}}" href="{{route('profile.settings',auth()->user()->id)}}">
+                        <span class="menu-bullet">
+                            <span class="fa fa-user"></span>
+                        </span>
+                        <span class="menu-title">Profile</span>
                     </a>
                 </div>
 
@@ -274,7 +282,7 @@ $user = Auth::user()->role;
                 @if($user == "doctor")
 
                 <div class="menu-item">
-                    <a class="menu-link" href="{{route('home')}}">
+                    <a class="menu-link" href="{{route('doctor.home')}}">
                         <span class="menu-bullet">
                             <span class="bullet bullet-dot"></span>
                         </span>
