@@ -30,7 +30,7 @@
 
                 <div class="col-md-6 text-center">
                     <h3 class="h3 fw-bold mb-3">CONSULT ACROSS <span>25+</span>SPECIALTIES</h3>
-                    <p class="text-larger text-muted">Consult online with top doctors across specialities from the comport of your room.</p>
+                    <p class="text-larger text-muted">Consult online with top doctors across specialities from the comfort of your room.</p>
                 </div>
 
                 <div class="w-100 mt-4"></div>
@@ -215,7 +215,7 @@
                 <div class="container clearfix">
                     <div class="heading-block center border-bottom-0">
                         <h3>Meet our Team of Specialists<span>.</span></h3>
-                        <span>We make sure that your Life are in Good Hands.</span>
+                        <span>We make sure that your Life is in Good Hands.</span>
                     </div>
 
                     <div id="oc-products" class="owl-carousel products-carousel carousel-widget"

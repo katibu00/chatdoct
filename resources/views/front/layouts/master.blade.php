@@ -54,13 +54,13 @@
                         <!-- Top Social
       ============================================= -->
                         <ul id="top-social">
-                            <li><a href="/front/#" class="si-facebook"><span class="ts-icon"><i
+                            <li><a href="https://web.facebook.com/ChatDoc-Nigeria-102803225693104" class="si-facebook"><span class="ts-icon"><i
                                             class="icon-facebook"></i></span><span
                                         class="ts-text">Facebook</span></a></li>
-                            <li><a href="/front/#" class="si-twitter"><span class="ts-icon"><i
+                            <li><a href="https://web.facebook.com/ChatDoc-Nigeria-102803225693104" class="si-twitter"><span class="ts-icon"><i
                                             class="icon-twitter"></i></span><span
                                         class="ts-text">Twitter</span></a></li>
-                            <li><a href="/front/#" class="si-instagram"><span class="ts-icon"><i
+                            <li><a href="https://web.facebook.com/ChatDoc-Nigeria-102803225693104" class="si-instagram"><span class="ts-icon"><i
                                             class="icon-instagram2"></i></span><span
                                         class="ts-text">Instagram</span></a></li>
                         </ul><!-- #top-social end -->
