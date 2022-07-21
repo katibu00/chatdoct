@@ -36,4 +36,20 @@ class UsersController extends Controller
         $data['users'] = User::where('role','admin')->get();
         return view('users.admins',$data);
     }
+
+    public function featureDoctors($id){
+        
+        $user = User::find($id);
+        $featured = $user->featured;
+        if($featured == 0){
+            $user->featured = 1;
+        }
+        if($featured == 1){
+            $user->featured = 0;
+        }
+        $user->update();
+
+        Toastr::success('The Doctor has been Featured sucessfully', 'Done');
+        return redirect()->back();
+    }
 }

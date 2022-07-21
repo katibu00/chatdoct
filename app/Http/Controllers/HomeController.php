@@ -47,7 +47,7 @@ class HomeController extends Controller
 
 
         $data['recent'] = Booking::where('patient_id', Auth::user()->id)->get();
-        $data['users'] = User::where('role','doctor')->where('status',1)->get();
+        $data['users'] = User::where('role','doctor')->where('status',1)->where('featured',1)->get();
         $data['user'] = User::where('id',Auth::user()->id)->first();
         // $data['balance'] = User::sum('balance');
         return view('patient',$data);

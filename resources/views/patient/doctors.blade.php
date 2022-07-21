@@ -19,20 +19,6 @@
             <div class="d-flex flex-wrap flex-stack mb-6">
                 <!--begin::Title-->
                 <h3 class="fw-bolder my-2">Featured Doctors</h3>
-                {{-- <span class="fs-6 text-gray-400 fw-bold ms-1">(29)</span></h3> --}}
-                <!--end::Title-->
-                <!--begin::Controls-->
-                {{-- <div class="d-flex my-2">
-                    <!--begin::Select-->
-                    <select name="status" data-control="select2" data-hide-search="true" class="form-select form-select-white form-select-sm w-125px">
-                        <option value="Active" selected="selected">Active</option>
-                        <option value="Approved">In Progress</option>
-                        <option value="Declined">To Do</option>
-                        <option value="In Progress">Completed</option>
-                    </select>
-                    <!--end::Select-->
-                </div> --}}
-                <!--end::Controls-->
             </div>
             <!--end::Followers toolbar-->
             <!--begin::Row-->
@@ -94,12 +80,7 @@
                             <!--begin::Follow-->
                             <a href="{{route('doctors.details',$user->number)}}" class="btn btn-sm btn-light-primary">
                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr012.svg-->
-                            {{-- <span class="svg-icon svg-icon-3">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="black" />
-                                    <path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="black" />
-                                </svg>
-                            </span> --}}
+                          
                             <!--end::Svg Icon-->View Details</a>
                             <!--end::Follow-->
                         </div>

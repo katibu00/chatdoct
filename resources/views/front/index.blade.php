@@ -229,17 +229,23 @@
                                 <!-- Card -->
                                 <div class="card shadow-sm">
                                     <img  @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif
-                                        class="card-img-top" alt="...">
+                                        class="card-img-top" alt="Doctor Image" height="230px" >
                                     <div class="card-body">
                                         <span
                                             class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">{{$user->rank}}</span>
                                         <h4 class="mb-2">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</h4>
                                         
                                         <div class="row g-0 mb-2 clearfix car-features">
+
+                                            @php
+                                                $datas = $user->languages; 
+                                                $data = explode(',', $datas); 
+                                            @endphp
                                         
                                             <div class="col-6 mb-2"><i class="icon-language mx-1"></i>
-                                        
-                                               {{$user->languages }} 
+                                                @foreach ($data as $dat)
+                                                 {{$dat}}
+                                                @endforeach
                                             </div>
                                             <div class="col-6 mb-2"><i class="icon-chat-2 mx-1"></i>&#x20A6;{{number_format($user->chat_rate,0)}}
                                             </div>

@@ -51,6 +51,7 @@
 								<th class="min-w-50px">PHOTO</th>
 								<th class="min-w-125px">NAME</th>
 								<th class="min-w-125px">RANK</th>
+								<th class="min-w-125px">FEATURED</th>
 								<th class="min-w-125px">JOINED</th>
 								<th class="text-end min-w-70px">Actions</th>
 							</tr>
@@ -98,6 +99,7 @@
 								<td> {{$user->rank}}</td>
 								<!--end::Product=-->
 								<!--begin::Date=-->
+								<td> {{$user->featured == 1? 'Featured':'No'}}</td>
 								<td> {{$user->created_at->diffForHumans()}}</td>
 								<!--end::Date=-->
 								<!--begin::Action=-->
@@ -115,6 +117,9 @@
 										<!--begin::Menu item-->
 										<div class="menu-item px-3">
 											<a class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#details{{$key}}">Details</a>
+										</div>
+										<div class="menu-item px-3">
+											<a class="menu-link px-3" href="{{ route('feature',$user->id)}}">{{ $user->featured == 0? 'Feature':'Unfeature'}}</a>
 										</div>
 										<!--end::Menu item-->
 	

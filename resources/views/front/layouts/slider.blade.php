@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide-bg"
-                    style="background-image: url('/uploads/banner/1.jpg'); background-position: center bottom;">
+                    style="background-image: url('/uploads/banner/3.jpg'); background-position: center bottom;">
                 </div>
             </div>
             <div class="swiper-slide">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="swiper-slide-bg"
-                    style="background-image: url('/uploads/banner/1.jpg'); background-position: center bottom;">
+                    style="background-image: url('/uploads/banner/4.jpg'); background-position: center bottom;">
                 </div>
             </div>
         </div>

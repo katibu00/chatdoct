@@ -35,7 +35,7 @@ Route::get('/', function () {
             return redirect()->route('pending.home');
         }
     };
-    $data['doctors'] = User::where('role','doctor')->where('status',1)->get();
+    $data['doctors'] = User::where('role','doctor')->where('status',1)->where('featured',1)->get();
     return view('front.index',$data);
 
 })->name('homepage');
@@ -100,24 +100,9 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function()
     Route::get('/admins', [App\Http\Controllers\UsersController::class, 'adminsIndex'])->name('users.admins.index');
     Route::get('/doctors/applications/submit/{id}', [App\Http\Controllers\UsersController::class, 'ApproveRequest'])->name('doctors.applications.submit');
 
+    Route::get('/feature/{id}', [App\Http\Controllers\UsersController::class, 'featureDoctors'])->name('feature');
+
 });
-
-// //Routes copied 
-// Route::get('/showDoctor', function () {
-//     return view('doctor_profile');
-// })->name('showDoctor');
-
-// Route::get('/doctorsList', function () {
-//     return view('doctors_list');
-// })->name('doctorsList');
-
-// Route::get('/medicalDevices', function () {
-//     return view('medical_devices');
-// })->name('medicalDevices');
-// Route::get('/index', function () {
-//     return view('home');
-// })->name('index');
-
 
 
 

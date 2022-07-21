@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('patient');
             $table->string('picture')->default('default.png');
             $table->integer('balance')->default(0);
+            $table->integer('featured')->default(0);
             $table->integer('price')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();

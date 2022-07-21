@@ -5,10 +5,10 @@
             <!-- Logo
 ============================================= -->
             <div id="logo" class="ms-auto ms-lg-0 me-lg-auto">
-                <a href="#" class="standard-logo"><img
-                        src="/uploads/logo.jpg" alt="Chatdoct Logo"></a>
-                <a href="/front/index.html" class="retina-logo"><img
-                        src="/uploads/logo.jpg" alt="Chatdoct Logo"></a>
+                <a href="{{ route('homepage') }}" class="standard-logo"><img
+                        src="/uploads/logo.png" alt="Chatdoct Logo"></a>
+                <a href="{{ route('homepage') }}" class="retina-logo"><img
+                        src="/uploads/logo.png" alt="Chatdoct Logo"></a>
             </div><!-- #logo end -->
 
             <div class="header-misc d-none d-lg-flex">
