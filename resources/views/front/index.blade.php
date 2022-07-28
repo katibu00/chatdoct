@@ -29,184 +29,208 @@
             <div class="row justify-content-center mw-lg mx-auto gutter-20">
 
                 <div class="col-md-6 text-center">
-                    <h3 class="h3 fw-bold mb-3">CONSULT ACROSS <span>25+</span>SPECIALTIES</h3>
+                    <h3 class="h3 fw-bold mb-3">CONSULT ACROSS <span>TOP</span>SPECIALTIES</h3>
                     <p class="text-larger text-muted">Consult online with top doctors across specialities from the comfort of your room.</p>
                 </div>
 
                 <div class="w-100 mt-4"></div>
 
                 <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-layers"></i></a>
+                    <a href="{{ route('speciality','speciality=covid-19') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/covid-19.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Covid-19 Specialist</h3>
+                            </div>
                         </div>
-                        <div class="fbox-content">
-                            <h3>General Practitioner</h3>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=general') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/general.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>General Practitioner</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-ellipsis"></i></a>
+                    <a href="{{ route('speciality','speciality=Internal') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/Gastroenterologists.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Internal Medicine</h3>
+                            </div>
                         </div>
-                        <div class="fbox-content">
-                            <h3>Internal Medicine</h3>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Family') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/sexologist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Family medicine</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Family') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/pediatrition.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Paediatrics</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Gynecology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/gynecologist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Gynecology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Obstetrics') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/gynecologist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Obstetrics</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Orthopaedics') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/orthopedic.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Orthopaedics</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Urology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/urologist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Urology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Psychiatry') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/psychiatrist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Psychiatry</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Endocrinology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/Gastroenterologists.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Endocrinology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Cardiology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/cardiologist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Cardiology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Ophthalmology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/ophthalmologists.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Ophthalmology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Neurology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/neuro.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Neurology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Nephrology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/homeopathy.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Nephrology</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{{ route('speciality','speciality=Nephrology') }}">
+                        <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
+                            <div class="fbox-icon mb-2">
+                                <img src="/front/images/diabetologist.png">
+                            </div>
+                            <div class="fbox-content">
+                                <h3>Oncology</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-paper"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Family medicine </h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-code"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Paediatrics</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-codesandbox"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Gynecology</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-layout"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Obstetrics</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-line-users"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>General surgery</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Orthopaedics</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Urology</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Psychiatry</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Endocrinology</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Cardiology</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Ophthalmology</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Neurology</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Nephrology</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-box fbox-center fbox-plain px-3 py-3 rounded-3 bg-light border mx-0">
-                        <div class="fbox-icon mb-2">
-                            <a href="#"><i class="icon-wpforms"></i></a>
-                        </div>
-                        <div class="fbox-content">
-                            <h3>Oncology</h3>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
-
-
 
 
 
@@ -229,7 +253,7 @@
                                 <!-- Card -->
                                 <div class="card shadow-sm">
                                     <img  @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif
-                                        class="card-img-top" alt="Doctor Image" height="230px" >
+                                        class="card-img-top" alt="Doctor Image" >
                                     <div class="card-body">
                                         <span
                                             class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">{{$user->rank}}</span>
@@ -244,7 +268,7 @@
                                         
                                             <div class="col-6 mb-2"><i class="icon-language mx-1"></i>
                                                 @foreach ($data as $dat)
-                                                 {{$dat}}
+                                                 {{$dat}}@if(!$loop->last),@endif
                                                 @endforeach
                                             </div>
                                             <div class="col-6 mb-2"><i class="icon-chat-2 mx-1"></i>&#x20A6;{{number_format($user->chat_rate,0)}}
