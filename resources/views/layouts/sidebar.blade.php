@@ -241,24 +241,6 @@ $user = Auth::user()->role;
                     </a>
                 </div>
 
-                {{-- <div class="menu-item">
-                    <a class="menu-link" href="#">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">My Subscriptions</span>
-                    </a>
-                </div>
-
-                <div class="menu-item">
-                    <a class="menu-link" href="#">
-                        <span class="menu-bullet">
-                            <span class="bullet bullet-dot"></span>
-                        </span>
-                        <span class="menu-title">Test Request</span>
-                    </a>
-                </div> --}}
-
                 <div class="menu-item">
                     <a class="menu-link {{($route=='wallet')?'active':''}}" href="{{route('wallet')}}">
                         <span class="menu-bullet">
@@ -296,6 +278,33 @@ $user = Auth::user()->role;
                             <span class="bullet bullet-dot"></span>
                         </span>
                         <span class="menu-title">My Patients</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{($route=='doctors.schedules')?'active':''}}" href="{{route('doctors.schedules') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">My Schedules</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link" href="#">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">My Wallet</span>
+                    </a>
+                </div>
+
+                <div class="menu-item">
+                    <a class="menu-link {{ ($route=='doctors.profile.settings')?'active':'' }}" href="{{ route('doctors.profile.settings') }}">
+                        <span class="menu-bullet">
+                            <span class="bullet bullet-dot"></span>
+                        </span>
+                        <span class="menu-title">My Profile</span>
                     </a>
                 </div>
 

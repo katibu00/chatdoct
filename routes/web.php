@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/home', [HomeController::class, 'admin'])->name('admin.home');
 });
 
-Route::group(['prefix' => '', 'middleware' => ['auth']], function(){
+Route::group(['prefix' => 'home', 'middleware' => ['auth']], function(){
     Route::get('/patient', [HomeController::class, 'patient'])->name('patient.home');
     Route::get('/doctor', [HomeController::class, 'doctor'])->name('doctor.home');
 });
@@ -108,14 +108,14 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth','admin']], function()
 
 
 
-Route::get('/doctor/profile/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
+// Route::get('/doctor/profile/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
 
 
 //patient routes
 Route::group(['prefix' => 'patient', 'middleware' => ['auth']], function(){
 
     Route::get('/doctors', [App\Http\Controllers\PatientController::class, 'DoctorsIndex'])->name('doctors.index');
-    // Route::get('/doctors/details/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
+    Route::get('/doctors/details/{number}', [App\Http\Controllers\PatientController::class, 'DoctorsDetails'])->name('doctors.details');
 
     Route::post('/book', [App\Http\Controllers\PatientController::class, 'BookDoctor'])->name('book');
     Route::get('/reservations', [App\Http\Controllers\PatientController::class, 'MyReservations'])->name('reservations');
@@ -136,8 +136,8 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['auth']], function(){
     Route::post('/schedules', [App\Http\Controllers\DoctorController::class, 'SchedulesStore'])->name('doctors.schedules');
     Route::get('/profile', [App\Http\Controllers\DoctorController::class, 'ProfileIndex'])->name('doctors.profile');
     Route::get('/profile/settings', [App\Http\Controllers\DoctorController::class, 'SettingsIndex'])->name('doctors.profile.settings');
+    Route::post('/profile/settings', [App\Http\Controllers\DoctorController::class, 'SettingsStore']);
 
-    Route::post('/profile/{id}', [App\Http\Controllers\DoctorController::class, 'update'])->name('doctors.profile');
 
     Route::get('/patients', [App\Http\Controllers\DoctorController::class, 'MyPatients'])->name('doctor.patients');
     Route::get('/chat/patients', [App\Http\Controllers\DoctorController::class, 'Chat'])->name('doctor.chat');

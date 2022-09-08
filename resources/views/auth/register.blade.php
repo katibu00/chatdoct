@@ -54,17 +54,7 @@
 							<!--end::Heading-->
 							<!--begin::Input group-->
 							<div class="row fv-row mb-7">
-								<!--begin::Col-->
-								{{-- <div class="col-xl-12">
-									<label class="form-label fw-bolder text-dark fs-6">Full Name</label>
-									<input class="form-control form-control-lg form-control-solid  @error('name') is-invalid @enderror" type="text" id="name" placeholder="" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus />
-
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-								</div> --}}
+								
 								<div class="col-xl-6">
 									<label class="form-label fw-bolder text-dark fs-6">First Name</label>
 									<input class="form-control form-control-lg form-control-solid  @error('first_name') is-invalid @enderror" type="text" id="first_name" placeholder="First Name" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus />

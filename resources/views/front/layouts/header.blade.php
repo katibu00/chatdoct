@@ -1,3 +1,7 @@
+@php
+$route = Route::current()->getName();
+@endphp
+
 <header id="header" class="header-size-sm" data-sticky-shrink="false">
     <div class="container">
         <div class="header-row">
@@ -18,7 +22,7 @@
                         <i class="i-plain icon-call m-0"></i>
                         <div class="he-text">
                             Call Us
-                            <span>(234) 0809 697 8454</span>
+                            <span>(234) 806 178 9101</span>
                         </div>
                     </li>
                     <li>
@@ -75,48 +79,130 @@
                 <nav class="primary-menu with-arrows">
 
                     <ul class="menu-container">
-                        <li class="menu-item current"><a class="menu-link"
+                        <li class="menu-item {{ $route == 'homepage'? 'current': ''}}"><a class="menu-link"
                                 href="{{route('homepage')}}">
                                 <div>Home</div>
                             </a></li>
-                        <li class="menu-item"><a class="menu-link"
-                                href="#">
-                                <div>Departments</div>
-                            </a>
-                            <ul class="sub-menu-container">
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>General practitioner</div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>Internal Medicine</div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div></div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>Family medicine </div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>Paediatrics</div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>Gynecology</div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>Obstetrics</div>
-                                    </a></li>
-                                <li class="menu-item"><a class="menu-link" href="/front/#">
-                                        <div>Orthopaedics</div>
-                                    </a></li>
-                         
-                            </ul>
-                        </li>
-                        <li class="menu-item"><a class="menu-link"
+                       
+
+                            <li class="menu-item mega-menu {{ $route == 'speciality'? 'current': ''}}">
+                                <a class="menu-link" href="#"><div>Departments</div></a>
+                                <div class="mega-menu-content mega-menu-style-2">
+                                    <div class="container">
+                                        <div class="row">
+                                            <ul class="sub-menu-container mega-menu-column col">
+                                                <li class="menu-item mega-menu-title">
+                                                    <a class="menu-link" href="#"><div>Specialities</div></a>
+                                                    <ul class="sub-menu-container">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=covid-19') }}"><div>Covid-19 Specialist</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=general_practitioner') }}"><div>General Practitioner</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=internal_medicine') }}"><div>Internal Medicine</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=family_medicine') }}"><div>Family medicine</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=paediatrics') }}"><div>Paediatrics</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=gynecology') }}"><div>Gynecology</div></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul class="sub-menu-container mega-menu-column col">
+                                                <li class="menu-item mega-menu-title">
+                                                    <a class="menu-link" href="#"><div>Specialities</div></a>
+                                                    <ul class="sub-menu-container">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=bbstetrics') }}"><div>Obstetrics</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=orthopaedics') }}"><div>Orthopaedics</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=urology') }}"><div>Urology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=psychiatry') }}"><div>Psychiatry</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=endocrinology') }}"><div>Endocrinology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=cardiology') }}"><div>Cardiology</div></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul class="sub-menu-container mega-menu-column col">
+                                                <li class="menu-item mega-menu-title">
+                                                    <a class="menu-link" href="#"><div>Specialities</div></a>
+                                                    <ul class="sub-menu-container">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=ophthalmology') }}"><div>Ophthalmology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=neurology') }}"><div>Neurology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=nephrology') }}"><div>Nephrology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=oncology') }}"><div>Oncology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=dermatology') }}"><div>Dermatology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=immunology') }}"><div>Immunology</div></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <ul class="sub-menu-container mega-menu-column col">
+                                                <li class="menu-item mega-menu-title">
+                                                    <a class="menu-link" href="#"><div>Specialities</div></a>
+                                                    <ul class="sub-menu-container">
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=radiology') }}"><div>Radiology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=haematology') }}"><div>Haematology</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=general_surgery') }}"><div>General Surgery</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=plastic_surgery') }}"><div>Plastic Surgery</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=ent') }}"><div>ENT (Ear, Nose, Throat)</div></a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a class="menu-link" href="{{ route('speciality','speciality=maxillofacial_surgery') }}"><div>Maxillofacial Surgery</div></a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                      
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                        <li class="menu-item {{ $route == 'about'? 'current': ''}}"><a class="menu-link"
                                 href="{{route('about')}}">
                                 <div>About Us</div>
                             </a></li>
                         
-                        <li class="menu-item"><a class="menu-link"
+                        <li class="menu-item {{ $route == 'contact'? 'current': ''}}"><a class="menu-link"
                                 href="{{route('contact')}}">
                                 <div>Contact</div>
                             </a></li>

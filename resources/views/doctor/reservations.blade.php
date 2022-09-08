@@ -94,7 +94,7 @@
                                 <!--begin::User-->
 
                                 <div class="">
-                                    <a class="btn btn-sm  btn-bg-primary ml-1 btn-active-color-secondary text-white subs" data-bs-toggle="modal" data-bs-target="#subscription" data-id="{{$doctor->id}}">Subs</a>
+                                    <a class="btn btn-sm  btn-bg-primary ml-1 btn-active-color-secondary text-white subs" data-bs-toggle="modal" data-bs-target="#subscription" data-id="{{$doctor->id}}">Prescription</a>
                                  </div>
                                
                             </div>

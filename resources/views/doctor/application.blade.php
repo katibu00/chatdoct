@@ -57,15 +57,16 @@
                                         </span>
                                         <!--end::Cancel-->
                                         <!--begin::Remove-->
-                                        {{-- <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                                             <i class="bi bi-x fs-2"></i>
-                                        </span> --}}
+                                        </span>
                                         <!--end::Remove-->
                                     </div>
                                     <!--end::Image input-->
                                     <!--begin::Hint-->
                                     <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
                                     <!--end::Hint-->
+                                   
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -85,6 +86,9 @@
                                         <!--begin::Col-->
                                         <div class="col-lg-4 fv-row">
                                             <input type="text" name="first_name" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" placeholder="First name" value="{{Auth::user()->first_name}}" />
+                                            @error('first_name')
+                                               <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <!--end::Col-->
                                         <!--begin::Col-->
@@ -94,6 +98,9 @@
                                         <!--end::Col-->
                                         <div class="col-lg-4 fv-row">
                                             <input type="text" name="last_name" class="form-control form-control-lg form-control-solid " placeholder="Last name" value="{{Auth::user()->last_name}}" />
+                                            @error('last_name')
+                                              <p class="text-danger">{{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <!--end::Col-->
                                     </div>
@@ -121,9 +128,11 @@
                                     <option value="Consultant">Consultant</option>
                                     <option value="Resident Doctor">Resident Doctor</option>
                                     <option value="Medical Officer">Medical Officer</option>
-                                </select>                                  
+                                </select> 
+                                @error('rank')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror                          
                             </div>
-                                <!--end::Col-->
                             </div>
                             <!--end::Input group-->
 
@@ -132,13 +141,14 @@
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">
                                     <span class="required">Speciality</span>
-                                    {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i> --}}
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <select class="form-select form-select-solid" data-control="select2" multiple data-hide-search="false" data-placeholder="Select Specialities" name="speciality[]">
                                         <option value=""></option>
+                                        <option value="General Practitioner">General Practitioner</option>
+                                        <option value="General Surgery">General Surgery</option>
                                         <option value="Dermotology">Dermotology</option>
                                         <option value="Immunology">Immunology</option>
                                         <option value="Radiology">Radiology</option>
@@ -154,7 +164,6 @@
                                         <option value="Psychiatrics">Psychiatrics</option>
                                         <option value="Rheumatology">Rheumatology</option>
                                         <option value="Oncology">Oncology</option>
-                                        <option value="General Surgery">General Surgery</option>
                                         <option value="Urology">Urology</option>
                                         <option value="Radiology">Radiology</option>
                                         <option value="Endocrinolgy">Endocrinolgy</option>
@@ -162,12 +171,14 @@
                                         <option value="Plastic Surgery">Plastic Surgery</option>
                                         <option value="Gastroenterology">Gastroenterology</option>
                                         <option value="Dental Surgery">Dental Surgery</option>
-                                        <option value="Maxilofacial surgery">Maxilofacial surgery</option>
+                                        <option value="Maxillofacial surgery">Maxillofacial surgery</option>
                                         <option value="ENT">ENT</option>
                                         <option value="Nephrology">Nephrology</option>
-                                        <option value="General Practitioner">General Practitioner</option>
                                        
-                                    </select>                                  
+                                    </select> 
+                                    @error('speciality')
+                                         <p class="text-danger">{{ $message }}</p>
+                                    @enderror                                 
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -185,7 +196,10 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="tel" name="phone" class="form-control form-control-lg form-control-solid" placeholder="Phone number" value="" />
+                                    <input type="tel" name="phone" class="form-control form-control-lg form-control-solid" placeholder="Phone number" value="{{ Auth::user()->phone }}" />
+                                    @error('phone')
+                                     <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -198,6 +212,9 @@
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="experience" class="form-control form-control-lg form-control-solid" placeholder="Years of Experience" value="" />
+                                    @error('experience')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -223,9 +240,10 @@
                                         <option value="Tiv">Tiv</option>
                                         <option value="Kanuri">Kanuri</option>
                                         <option value="Ibibio">Ibibio</option>
-                                       
-                                       
-                                    </select>                                  
+                                    </select> 
+                                    @error('languages')
+                                     <p class="text-danger">{{ $message }}</p>
+                                    @enderror                                 
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -236,14 +254,14 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-bold fs-6">Practice License/Certificate of Registration</label>
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Practice License/Certificate of Registration</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8">
                                     <!--begin::Image input-->
                                     <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url(/assets/media/avatars/blank.png)">
                                         <!--begin::Preview existing avatar-->
-                                        <div class="image-input-wrapper w-125px h-150px" style="background-image: url(/uploads/default.png)" ></div>
+                                        <div class="image-input-wrapper w-125px h-150px" style="background-image: url(/no-image.jpg)" ></div>
                                         <!--end::Preview existing avatar-->
                                         <!--begin::Label-->
                                         <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
@@ -260,15 +278,18 @@
                                         </span>
                                         <!--end::Cancel-->
                                         <!--begin::Remove-->
-                                        {{-- <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
                                             <i class="bi bi-x fs-2"></i>
-                                        </span> --}}
+                                        </span>
                                         <!--end::Remove-->
                                     </div>
                                     <!--end::Image input-->
                                     <!--begin::Hint-->
                                     <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
                                     <!--end::Hint-->
+                                    @error('certificate')
+                                      <p class="text-danger">{{ $message }}</p>
+                                    @enderror   
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -277,11 +298,14 @@
                                <!--begin::Input group-->
                                <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-bold fs-6">Folio Number</label>
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Folio Number</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="folio" class="form-control form-control-lg form-control-solid" placeholder="Enter your Folio Number"  />
+                                    @error('folio')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror 
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -294,15 +318,18 @@
                        
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-bold fs-6">Sex</label>
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Sex</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <select name="sex" aria-label="Select Sex" data-control="select2" data-placeholder="Select sex.." class="form-select form-select-solid form-select-lg">
+                                    <select name="sex"  class="form-select form-select-solid form-select-lg">
                                         <option value=""></option>
                                         <option data-bs-offset="-39600" value="Male" {{Auth::user()->sex == 'Male'?"Selected":""}}>Male</option>
                                         <option data-bs-offset="-39600" value="Female" {{Auth::user()->sex == 'Female'?"Selected":""}}>Female</option>
-                                    </select>                                
+                                    </select> 
+                                    @error('sex')
+                                      <p class="text-danger">{{ $message }}</p>
+                                    @enderror                               
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -316,42 +343,16 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                 <textarea name="address" class="form-control form-control-lg form-control-solid"></textarea>
+                                 <textarea name="address" class="form-control form-control-lg form-control-solid">{{ Auth::user()->address }}</textarea>
+                                 @error('address')
+                                     <p class="text-danger">{{ $message }}</p>
+                                @enderror
                                 </div>
                                 <!--end::Col-->
                             </div>
                             <!--end::Input group-->
                    
-                            {{-- <!--begin::Input group-->
-                            <div class="row mb-6">
-                                <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Communication</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
-                                <div class="col-lg-8 fv-row">
-                                    <!--begin::Options-->
-                                    <div class="d-flex align-items-center mt-3">
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-inline form-check-solid me-5">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="1" />
-                                            <span class="fw-bold ps-2 fs-6">Email</span>
-                                        </label>
-                                        <!--end::Option-->
-                                        <!--begin::Option-->
-                                        <label class="form-check form-check-inline form-check-solid">
-                                            <input class="form-check-input" name="communication[]" type="checkbox" value="2" />
-                                            <span class="fw-bold ps-2 fs-6">Phone</span>
-                                        </label>
-                                        <!--end::Option-->
-                                    </div>
-                                    <!--end::Options-->
-                                </div>
-                                <!--end::Col-->
-                            </div>
-                            <!--end::Input group--> --}}
-             
-
-
+                           
                                      <!--begin::Input group-->
                                      <div class="row mb-6">
                                         <!--begin::Label-->
@@ -411,6 +412,9 @@
                                                         <option value="Yobe" @if(@$user->state == 'Yobe') selected @endif>Yobe</option>
                                                         <option value="Zamfara @if(@$user->state == 'Zamfara') selected @endif">Zamfara</option>
                                                         </select>
+                                                        @error('state')
+                                                         <p class="text-danger">{{ $message }}</p>
+                                                        @enderror
                                                  
                                                 </div>
                                                 <!--end::Col-->
@@ -422,9 +426,14 @@
                                                         class="form-select form-select-solid select-lga"
                                                         data-placeholder="LGA"
                                                         data-control="select2"
-                                                        required
                                                     >
+                                                    @if(@$user->lga != null)
+                                                    <option value="{{ $user->lga }}" selected>{{ $user->lga }}</option>
+                                                    @endif
                                                     </select>
+                                                    @error('lga')
+                                                     <p class="text-danger">{{ $message }}</p>
+                                                    @enderror
 
                                                 </div>
                                            
@@ -440,8 +449,7 @@
                         <!--end::Card body-->
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
                         <!--end::Actions-->
                     </form>
@@ -462,16 +470,8 @@
 @section('js')
 
 
-    <script src="/assets/js/custom/account/settings/signin-methods.js"></script>
     <script src="/assets/js/custom/account/settings/profile-details.js"></script>
     <script src="/assets/js/custom/account/settings/deactivate-account.js"></script>
-    <script src="/assets/js/custom/modals/two-factor-authentication.js"></script>
-    <script src="/assets/js/custom/widgets.js"></script>
-    <script src="/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/assets/js/custom/modals/create-app.js"></script>
-    <script src="/assets/js/custom/modals/upgrade-plan.js"></script>
-	<script src="/assets/js/custom/pages/projects/project/project.js"></script>
-
 <script src="/lga/lga2.min.js"></script>
 
 @endsection

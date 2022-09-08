@@ -30,7 +30,7 @@
                                 <div class="d-flex flex-column">
                                     <!--begin::Name-->
                                     <div class="d-flex align-items-center mb-2">
-                                        <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</a>
+                                        <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</a>
                                         <a href="#">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen026.svg-->
                                             <span class="svg-icon svg-icon-1 svg-icon-primary">
@@ -54,7 +54,7 @@
                                                 <path d="M12 22C14.6 22 17 21 18.7 19.4C17.9 16.9 15.2 15 12 15C8.8 15 6.09999 16.9 5.29999 19.4C6.99999 21 9.4 22 12 22Z" fill="black" />
                                             </svg>
                                         </span>
-                                        <!--end::Svg Icon-->Patient</a>
+                                        <!--end::Svg Icon-->Doctor</a>
                                         <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
                                         <span class="svg-icon svg-icon-4 me-1">
@@ -77,46 +77,7 @@
                                     <!--end::Info-->
                                 </div>
                                 <!--end::User-->
-                                <!--begin::Actions-->
-                                <div class="d-flex my-4">
-                              
-                                    <a href="#" class="btn btn-sm btn-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_offer_a_deal">Fund Wallet</a>
-                                    <!--begin::Menu-->
-                                    <div class="me-0">
-                                        <button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                            <i class="bi bi-three-dots fs-3"></i>
-                                        </button>
-                                        <!--begin::Menu 3-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-                                            <!--begin::Heading-->
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">Payments</div>
-                                            </div>
-                                            <!--end::Heading-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Generate Invoice</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link flex-stack px-3">Make Payment
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Specify a target name for future usage and reference"></i></a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Transaction History</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                       
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu 3-->
-                                    </div>
-                                    <!--end::Menu-->
-                                </div>
-                                <!--end::Actions-->
+            
                             </div>
                             <!--end::Title-->
                             <!--begin::Stats-->
@@ -141,7 +102,7 @@
                                             </div>
                                             <!--end::Number-->
                                             <!--begin::Label-->
-                                            <div class="fw-bold fs-6 text-gray-400">Credits</div>
+                                            <div class="fw-bold fs-6 text-gray-400">Wallet Balance</div>
                                             <!--end::Label-->
                                         </div>
                                         <!--end::Stat-->
@@ -165,41 +126,9 @@
                                             <!--end::Label-->
                                         </div>
                                         <!--end::Stat-->
-                                        <!--begin::Stat-->
-                                        <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
-                                            <!--begin::Number-->
-                                            <div class="d-flex align-items-center">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                <span class="svg-icon svg-icon-3 svg-icon-success me-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-                                                        <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                                <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="6" data-kt-countup-prefix="">0</div>
-                                            </div>
-                                            <!--end::Number-->
-                                            <!--begin::Label-->
-                                            <div class="fw-bold fs-6 text-gray-400">Prescriptions</div>
-                                            <!--end::Label-->
-                                        </div>
-                                        <!--end::Stat-->
                                     </div>
                                     <!--end::Stats-->
                                 </div>
-                                <!--end::Wrapper-->
-                                <!--begin::Progress-->
-                                <div class="d-flex align-items-center w-200px w-sm-300px flex-column mt-3">
-                                    <div class="d-flex justify-content-between w-100 mt-auto mb-2">
-                                        <span class="fw-bold fs-6 text-gray-400">Profile Compleation</span>
-                                        <span class="fw-bolder fs-6">50%</span>
-                                    </div>
-                                    <div class="h-5px mx-3 w-100 bg-light mb-3">
-                                        <div class="bg-success rounded h-5px" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <!--end::Progress-->
                             </div>
                             <!--end::Stats-->
                         </div>
@@ -209,23 +138,12 @@
                     <!--begin::Navs-->
                     <div class="d-flex overflow-auto h-55px">
                         <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap">
-                            <!--begin::Nav item-->
                             <li class="nav-item">
-                                <a class="nav-link text-active-primary me-6" href="{{route('profile',$user->id)}}">Overview</a>
+                                <a class="nav-link text-active-primary me-6" href="{{route('doctors.profile.settings')}}">Profile Settings</a>
                             </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
-                            <li class="nav-item">
-                                <a class="nav-link text-active-primary me-6 " href="{{route('doctors.profile.settings')}}">Settings</a>
-                            </li>
-                            <!--end::Nav item-->
-                            <!--begin::Nav item-->
                             <li class="nav-item">
                                 <a class="nav-link text-active-primary me-6 active" href="{{route('doctors.schedules')}}">My Schedules</a>
                             </li>
-                            <!--end::Nav item-->
-                         
-                            <!--end::Nav item-->
                         </ul>
                     </div>
                     <!--begin::Navs-->
@@ -319,7 +237,6 @@
                         <!--end::Card body-->
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
                             <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
                         </div>
                         <!--end::Actions-->
@@ -333,20 +250,5 @@
         <!--end::Container-->
     </div>
     <!--end::Post-->
-
-@endsection
-
-
-@section('js')
-
-
-    <script src="/assets/js/custom/account/settings/signin-methods.js"></script>
-    <script src="/assets/js/custom/account/settings/profile-details.js"></script>
-    <script src="/assets/js/custom/account/settings/deactivate-account.js"></script>
-    <script src="/assets/js/custom/modals/two-factor-authentication.js"></script>
-    <script src="/assets/js/custom/widgets.js"></script>
-    <script src="/assets/js/custom/apps/chat/chat.js"></script>
-    <script src="/assets/js/custom/modals/create-app.js"></script>
-    <script src="/assets/js/custom/modals/upgrade-plan.js"></script>
 
 @endsection

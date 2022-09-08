@@ -49,6 +49,12 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:6',
+        ]);
 
         $year = date('y');
         $month = Carbon::now()->format('m');

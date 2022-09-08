@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File as File;
 
 class PatientProfileController extends Controller
@@ -42,11 +41,6 @@ class PatientProfileController extends Controller
         $filename = time() . '.' . $extension;
         $file->move('uploads/avatar', $filename);
         $user->picture = $filename;
-    }
-
-    if(Auth::user()->role == 'doctor'){
-        $user->chat_rate = $request->chat_rate;
-        $user->video_rate = $request->video_rate;
     }
 
     $user->update();

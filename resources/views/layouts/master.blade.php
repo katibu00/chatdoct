@@ -280,26 +280,26 @@
 												<div class="menu-item px-5">
 													<a href="{{route('wallet')}}" class="menu-link px-5">Fund Account</a>
 												</div>
+
+												<div class="menu-item px-5 my-1">
+													<a href="{{route('profile.settings',$user->id)}}" class="menu-link px-5">Account Settings</a>
+												</div>
 												@endif
 												
 												@if($user->role == 'doctor')
 												<div class="menu-item px-5">
-													<a href="{{route('doctors.schedules',$user->id)}}" class="menu-link px-5">My Schedules</a>
+													<a href="{{route('doctors.schedules') }}" class="menu-link px-5">My Schedules</a>
 												</div>
-												<!--end::Menu item-->
+												<div class="menu-item px-5 my-1">
+													<a href="{{route('doctors.profile.settings')}}" class="menu-link px-5">Account Settings</a>
+												</div>
+												
 												@endif
 												<!--begin::Menu separator-->
 												<div class="separator my-2"></div>
 												<!--end::Menu separator-->
 											
-												<!--begin::Menu item-->
-												<div class="menu-item px-5 my-1">
-													<a href="{{route('profile.settings',$user->id)}}" class="menu-link px-5">Account Settings</a>
-												</div>
-												<!--end::Menu item-->
-												<!--begin::Menu item-->
 												<div class="menu-item px-5">
-													{{-- <a href="{{route('logout')}}" class="menu-link px-5">Sign Out</a> --}}
 
                                                     <a class="menu-link px-5" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
@@ -342,19 +342,16 @@
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
 								<span class="text-muted fw-bold me-1">2021©</span>
-								<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">ChatDoc</a>
+								<a href="#" target="_blank" class="text-gray-800 text-hover-primary">ChatDoc Nig Limited</a>
 							</div>
 							<!--end::Copyright-->
 							<!--begin::Menu-->
 							<ul class="menu menu-gray-600 menu-hover-primary fw-bold order-1">
 								<li class="menu-item">
-									<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+									<a href="https://chatdoct.com/about-us" target="_blank" class="menu-link px-2">About</a>
 								</li>
 								<li class="menu-item">
-									<a href="https://keenthemes.com/support" target="_blank" class="menu-link px-2">Support</a>
-								</li>
-								<li class="menu-item">
-									<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Privacy Policy</a>
+									<a href="tel:2348061789101" target="_blank" class="menu-link px-2">Support</a>
 								</li>
 							</ul>
 							<!--end::Menu-->
@@ -394,9 +391,9 @@
 		<!--end::Page Vendors Javascript-->
 		<!--begin::Page Custom Javascript(used by this page)-->
 		<script src="/assets/js/custom/widgets.js"></script>
-		<script src="/assets/js/custom/apps/chat/chat.js"></script>
+		{{-- <script src="/assets/js/custom/apps/chat/chat.js"></script>
 		<script src="/assets/js/custom/modals/create-app.js"></script>
-		<script src="/assets/js/custom/modals/upgrade-plan.js"></script>
+		<script src="/assets/js/custom/modals/upgrade-plan.js"></script> --}}
 		<script src="/notify/toastr.min.js"></script>
 		@yield('js')
 		<!--end::Javascript-->

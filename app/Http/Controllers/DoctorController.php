@@ -8,6 +8,8 @@ use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File as File;
+
 
 class DoctorController extends Controller
 {
@@ -16,8 +18,49 @@ class DoctorController extends Controller
         $data['weekdays'] = explode(',',Auth::user()->weekdays);
         $data['saturdays'] = explode(',',Auth::user()->saturdays);
         $data['sundays'] = explode(',',Auth::user()->sundays);
-        return view('profile.my_schedules',$data);
+        return view('profile.doctor_schedules',$data);
     }
+    public function SettingsIndex()
+    {
+        return view('profile.settings_doctor', [ 'user' => auth()->user() ]);
+    }
+
+    public function SettingsStore(Request $request)
+    {
+        $user = User::FindorFail(auth()->user()->id);
+        $user->first_name = $request->first_name;
+        $user->middle_name = $request->middle_name;
+        $user->last_name = $request->last_name;
+        $user->phone = $request->phone;
+        $user->chat_rate = $request->chat_rate;
+        $user->video_rate = $request->video_rate;
+        $user->age = $request->age;
+        $user->sex = $request->sex;
+        $user->address = $request->address;
+    
+
+        if ($request->file('image') != null) {
+
+        $destination = 'uploads/avatar/'.$user->picture; 
+        
+        if (File::exists($destination)) {
+            File::delete($destination);
+        }
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move('uploads/avatar', $filename);
+        $user->picture = $filename;
+    }
+    
+
+    $user->update();
+
+    Toastr::success('Profile has been Updated sucessfully', 'Done');
+    return redirect()->back();
+    }
+
+
     public function SchedulesStore(Request $request)
     {
 
@@ -70,7 +113,6 @@ class DoctorController extends Controller
     }
 
     public function prescription(Request $request){
-// dd($request->all());
 
         $check = Prescription::where('booking_id',$request->get_id)->first();
         if($check){

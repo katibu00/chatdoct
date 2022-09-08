@@ -16,14 +16,22 @@ class DoctorApplicationController extends Controller
 
     public function save(Request $request){
       
-        // dd($request->speciality);
 
-        // $text = "Immunology,Radiology,Family Medicine,Internal Medicine,Neurology,Gynacology";
+        $this->validate($request, [
+            'first_name' => 'required|alpha',
+            'last_name' => 'required|alpha',
+             'rank' => 'required',
+            'phone' => 'required|tel',
+            'address' => 'required',
+            'state' => 'required',
+            'lga' => 'required',
+            'certificate' => 'required',
+            'folio' => 'required',
+            'speciality' => 'required',
+            'languages' => 'required',
+            'experience' => 'required',
+        ]);
 
-        // $exp = explode(',',$text);
-
-        // $string = implode(',', $request->speciality);
-        // dd($exp);
         $id = Auth::user()->id;
 
         $user = User::FindorFail($id);

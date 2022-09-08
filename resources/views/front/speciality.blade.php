@@ -15,7 +15,7 @@
                     ============================================= -->
                     <div id="posts" class="row gutter-40 mb-0">
 
-                        @foreach ($doctors as $doctor)
+                        @forelse ($doctors as $doctor)
                         <div class="entry col-12">
                             <div class="grid-inner row">
                                 <div class="col-lg-4">
@@ -63,7 +63,11 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach
+                        @empty
+                        <div class="style-msg errormsg">
+                            <div class="sb-msg"><i class="icon-remove"></i><strong>Oh snap!</strong> No doctor found in this speciality. Please choose another speciality and try again.</div>
+                        </div>
+                        @endforelse
                       
 
                     </div>
