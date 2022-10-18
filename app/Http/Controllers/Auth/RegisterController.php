@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -49,12 +50,20 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }
 
         $year = date('y');
         $month = Carbon::now()->format('m');
@@ -70,7 +79,10 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('login')->with('registered','You have registered successfully. Please login below.');
+        return response()->json([
+            'status' => 200,
+            'message' => 'You have been registered successfully. Redirecting to login.',
+        ]);
     }
 
 }

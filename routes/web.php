@@ -86,7 +86,7 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function(){
     Route::get('/profile/{id}', [App\Http\Controllers\PatientProfileController::class, 'index'])->name('profile');
     Route::get('/profile/settings/{id}', [App\Http\Controllers\PatientProfileController::class, 'settings'])->name('profile.settings');
 
-    Route::post('/profile/{id}', [App\Http\Controllers\PatientProfileController::class, 'update'])->name('profile');
+    Route::post('/profile', [App\Http\Controllers\PatientProfileController::class, 'update'])->name('profile');
 
     Route::get('/doctor/application', [App\Http\Controllers\DoctorApplicationController::class, 'index'])->name('doctor.apply');
 Route::post('/doctor/application', [App\Http\Controllers\DoctorApplicationController::class, 'save']);

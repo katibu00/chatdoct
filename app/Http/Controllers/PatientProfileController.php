@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\User;
 use Illuminate\Support\Facades\File as File;
+use Illuminate\Support\Facades\Validator;
 
 class PatientProfileController extends Controller
 {
@@ -15,11 +16,27 @@ class PatientProfileController extends Controller
     public function settings(){
         return view('profile.settings_patient');
     }
-    public function update(Request $request, $id){
+    
+    public function update(Request $request){
        
-        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required|max:191',
+            'last_name' => 'required|max:191',
+            'phone' => 'required|max:191',
+            'age' => 'required|max:191',
+            'sex' => 'required|max:191',
+        ]);
 
-        $user = User::FindorFail($id);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }
+
+       
+
+        $user = User::FindorFail(auth()->user()->id);
         $user->first_name = $request->first_name;
         $user->middle_name = $request->middle_name;
         $user->last_name = $request->last_name;
@@ -45,7 +62,10 @@ class PatientProfileController extends Controller
 
     $user->update();
 
-    Toastr::success('Profile has been Updated sucessfully', 'Done');
-    return redirect()->back();
+    return response()->json([
+        'status'=>200,
+        'message'=>'rofile has been Updated sucessfully'
+    ]);
+
     }
 }

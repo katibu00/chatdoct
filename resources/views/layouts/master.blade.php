@@ -13,10 +13,10 @@
 		<meta charset="utf-8" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="article" />
-		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
-		<meta property="og:url" content="https://keenthemes.com/metronic" />
-		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+		<meta property="og:title" content="ChatDoct" />
+		<meta property="og:url" content="https://chatdoct.com" />
+		<meta property="og:site_name" content="ChatDoct" />
+		<link rel="canonical" href="https://chatdoct.com" />
 		<link rel="shortcut icon" href="/uploads/logo.jpg" />
 		<!--begin::Fonts-->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -258,12 +258,7 @@
 												<!--end::Menu item-->
 												<!--begin::Menu separator-->
 												<div class="separator my-2"></div>
-												<!--end::Menu separator-->
-												<!--begin::Menu item-->
-												{{-- <div class="menu-item px-5">
-													<a href="{{route('profile',$user->id)}}" class="menu-link px-5">My Profile</a>
-												</div> --}}
-												<!--end::Menu item-->
+												
 												@if($user->role == 'patient')
 												<!--begin::Menu item-->
 												<div class="menu-item px-5">

@@ -5,6 +5,18 @@
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="chatdoc" />
+    <meta name="description" content="Chatdoc is a social enterprise that helps underserviced communities in Nigeria to access qualitative healthcare virtually through Telemedicine." />
+    <meta name="keywords" content="chatdoc, chat a doctor, doctor, chatting with a doctor, telemedicine, " />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta charset="utf-8" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="ChatDoct" />
+    <meta property="og:url" content="https://chatdoct.com" />
+    <meta property="og:site_name" content="ChatDoct" />
+    <link rel="canonical" href="https://chatdoct.com" />
+    <link rel="shortcut icon" href="/uploads/logo.jpg" />
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">

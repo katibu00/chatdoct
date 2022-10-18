@@ -193,12 +193,13 @@
                 <!--begin::Content-->
                 <div id="kt_account_profile_details" class="collapse show">
                     <!--begin::Form-->
-                    <form class="form" action="{{route('profile',$user->id)}}" method="post" enctype="multipart/form-data">
-                        @csrf
+                    <form class="form" id="update_profile_form" action="#"  enctype="multipart/form-data">
+                    
                         <!--begin::Card body-->
                         <div class="card-body border-top p-9">
                             <!--begin::Input group-->
                             <div class="row mb-6">
+                                <ul id="error_list"></ul>
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Picture</label>
                                 <!--end::Label-->
@@ -366,8 +367,7 @@
                         <!--end::Card body-->
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Update Profile</button>
+                            <button type="submit" class="btn btn-primary" id="submit_btn">Save Changes</button>
                         </div>
                         <!--end::Actions-->
                     </form>
@@ -382,4 +382,7 @@
     </div>
     <!--end::Post-->
 
+@endsection
+@section('js')
+@include('profile.update_profile_script')
 @endsection
