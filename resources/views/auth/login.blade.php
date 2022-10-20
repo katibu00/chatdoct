@@ -50,7 +50,7 @@
 								<div class="d-flex flex-stack mb-2">
 									<!--begin::Label-->
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
-									<a href="" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+									<a href="{{ route('password.forgot') }}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
 									<!--end::Link-->
 								</div>
                                 <input id="password" type="password" class="form-control  form-control-lg form-control-solid" id="password" name="password" autocomplete="current-password">

@@ -315,30 +315,18 @@
                                 </div>
                                 <!--end::Col-->
                             </div>
-                            <!--end::Input group-->
-
-
-                            <!--begin::Input group-->
+                           
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">Age</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" name="age" class="form-control form-control-lg form-control-solid" placeholder="Enter your Age" value="{{$user->age}}" />
                                 </div>
                                 <!--end::Col-->
                             </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                      
-                            <!--end::Input group-->
-                       
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">Sex</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <select name="sex" aria-label="Select Sex" data-control="select2" data-placeholder="Select sex.." class="form-select form-select-solid form-select-lg">
                                         <option value=""></option>
@@ -353,19 +341,12 @@
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label required fw-bold fs-6">Address</label>
-                                <!--end::Label-->
-                                <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                  <textarea name="address" class="form-control form-control-lg form-control-solid">{{$user->address}}</textarea>
                                 </div>
                                 <!--end::Col-->
                             </div>
-                            <!--end::Input group-->
-                   
-             
                         </div>
-                        <!--end::Card body-->
-                        <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
                             <button type="submit" class="btn btn-primary" id="submit_btn">Save Changes</button>
                         </div>

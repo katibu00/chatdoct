@@ -1,6 +1,6 @@
 <?php
 
-use App\Events\TestEvent;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
@@ -61,8 +61,13 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/change/password', [ChangepasswordController::class, 'index'])->name('change.password');
-Route::post('/change/password', [ChangepasswordController::class, 'change']);
+Route::get('/password/forgot', [ForgotPasswordController::class, 'index'])->name('password.forgot');
+Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'resetForm'])->name('reset.password');
+Route::post('/password/forgot', [ForgotPasswordController::class, 'sendEmail']);
+Route::post('/password/reset/reset', [ForgotPasswordController::class, 'resetPassword'])->name('reset.password.reset');
+
+// Route::get('/change/password', [ChangepasswordController::class, 'index'])->name('change.password');
+// Route::post('/change/password', [ChangepasswordController::class, 'change']);
 
 Route::group(['middleware' => ['auth', 'admin']], function(){
     Route::get('/home', [HomeController::class, 'admin'])->name('admin.home');
