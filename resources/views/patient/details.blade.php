@@ -608,21 +608,24 @@
                                             @csrf
                                             <input type="hidden" name="doctor_id" value="{{$user->id}}">
                                             <div class="row">
-                                                <div class="col-lg-4 fv-row">
-                                                    <select name="book_type" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Chat Type..." required>
+                                                <div class="col-md-5 fv-row">
+                                                    <select name="book_type" class="form-select form-select-solid  mb-3" data-control="select2" data-hide-search="true" data-placeholder="Book Type"   required>
                                                         <option></option>
                                                         <option value="chat">Chat</option>
                                                         <option value="video">Video Call</option>
                                                     </select>          
                                                 </div>
-                                                <div class="col-lg-4 fv-row">
+                                                <div class="col-md-5 fv-row">
                                                     <select name="time_slot" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Time Slot..." >
                                                         <option></option>
-                                                        <option value="chat">Chat</option>
-                                                        <option value="video">Video Call</option>
+                                                        <option value="Morning">Morning (6AM - 11:59PM)</option>
+                                                        <option value="Afternoon">Afternoon (12PM - 5:59PM)</option>
+                                                        <option value="Evening">Evening (6PM - 11:59PM)</option>
+                                                        <option value="Night">Night (12AM - 5:59AM)</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-lg-4 fv-row">
+                                               
+                                                <div class="col-md-2 fv-row">
                                                     <button type="submit" class="btn btn- btn-primary">Continue</button>
                                                 </div>
                                               

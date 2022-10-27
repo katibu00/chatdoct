@@ -60,12 +60,21 @@ class PatientController extends Controller
 
     public function BookDoctor(Request $request)
     {
-
+        // dd($request->all());
         $id = Auth::user()->id;
         $balance = Auth::user()->balance;
         $doctor = User::findorFail($request->doctor_id);
         $chat = $doctor->chat_rate;
         $video = $doctor->video_rate;
+
+        $day = strtolower(date('l')) . 's';
+        $doctor = User::where('id', $request->doctor_id)->first();
+        $schedules = explode(',', $doctor->$day);
+
+        if (!in_array($request->time_slot, $schedules)) {
+            Toastr::error('Doctor Unavailable at that time slot. Please choose another time slot and try again', 'Doctor Not Available');
+            return redirect()->back();
+        }
 
         if ($request->book_type == 'chat') {
             if ($balance < $chat) {
