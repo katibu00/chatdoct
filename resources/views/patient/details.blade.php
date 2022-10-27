@@ -40,7 +40,7 @@
                                         <svg width="100" height="100" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8.207 13.293L7.5 14a5.5 5.5 0 110-11h5a5.5 5.5 0 110 11s-1.807 2.169-4.193 2.818C7.887 16.933 7.449 17 7 17c.291-.389.488-.74.617-1.052C8.149 14.649 7.5 14 7.5 14c.707-.707.708-.707.708-.706h.001l.002.003.004.004.01.01a1.184 1.184 0 01.074.084c.039.047.085.108.134.183.097.15.206.36.284.626.114.386.154.855.047 1.394.717-.313 1.37-.765 1.895-1.201a10.266 10.266 0 001.013-.969l.05-.056.01-.012m0 0A1 1 0 0112.5 13a4.5 4.5 0 100-9h-5a4.5 4.5 0 000 9 1 1 0 01.707.293" clip-rule="evenodd"/>
                                         </svg>
                                     </span>
-                                    <div class="fs-6 fw-bolder text-gray-700">&#x20A6;{{number_format($user->chat_rate,0)}}<br /> <span class="fw-bold text-gray-400">/Hour</span></div>
+                                    <div class="fs-6 fw-bolder text-gray-700">&#x20A6;{{number_format($user->chat_rate,0)}}<br /> <span class="fw-bold text-gray-400">/slot</span></div>
                                 </div>
                                 <!--end::Stats-->
 
@@ -51,7 +51,7 @@
                                             <path fill-rule="evenodd" d="M13.25 7.65l2.768-1.605a.318.318 0 01.482.263v7.384c0 .228-.26.393-.482.264l-2.767-1.605-.502.865 2.767 1.605c.859.498 1.984-.095 1.984-1.129V6.308c0-1.033-1.125-1.626-1.984-1.128L12.75 6.785l.502.865z" clip-rule="evenodd"/>
                                             </svg>
                                     </span>
-                                    <div class="fs-6 fw-bolder text-gray-700">&#x20A6;{{number_format($user->video_rate,0)}}<br /> <span class="fw-bold text-gray-400">/Hour</span></div>
+                                    <div class="fs-6 fw-bolder text-gray-700">&#x20A6;{{number_format($user->video_rate,0)}}<br /> <span class="fw-bold text-gray-400">/slot</span></div>
                                 </div>
                                 <!--end::Stats-->
                                    
@@ -81,13 +81,20 @@
                             <div id="kt_customer_view_details" class="collapse show">
                                 <div class="py-5 fs-6">
                                     <!--begin::Badge-->
+                                    @if($user->featured == 1)
                                     <div class="badge badge-light-info d-inline">Featured Doctor</div>
-                                    <!--begin::Badge-->
-                                    <!--begin::Details item-->
+                                    @endif
+                                   
+                                    <div class="fw-bolder mt-5">Availability</div>
+                                    @if($availability == 'yes')
+                                    <div class=" badge badge-light-success">Available</div>
+                                    @endif
+                                    @if($availability == 'no')
+                                    <div class=" badge badge-light-danger">Not Available</div>
+                                    @endif
                                     <div class="fw-bolder mt-5">User ID</div>
                                     <div class="text-gray-600">D{{$user->number}}</div>
-                                    <!--begin::Details item-->
-                                    <!--begin::Details item-->
+                                   
                                     <div class="fw-bolder mt-5">About</div>
                                     <div class="text-gray-600">
                                         <!--begin::Notice-->
@@ -97,7 +104,7 @@
                                             <div class="d-flex flex-stack flex-grow-1">
                                                 <!--begin::Content-->
                                                 <div class="fw-bold">
-                                                    <div class="fs-6 text-gray-700">I have over 36 years working in the public sector. Retired but never tired, I'm here to continue doing what I love the most: helping people relieve them of their ailments.</div>
+                                                    <div class="fs-6 text-gray-700">{{ @$user->about }}</div>
                                                 </div>
                                                 <!--end::Content-->
                                             </div>
@@ -302,30 +309,124 @@
                                       
                                         <!--begin::Table body-->
                                         <tbody class="fs-6 fw-bold text-gray-600">
-                                        <!--begin::Table row-->
-                                        <tr>
-                                            <!--begin::Invoice=-->
-                                            <td>
-                                                Weekdays:
-                                            </td>
-                                            <!--end::Invoice=-->
-                                            <!--begin::Status=-->
-                                            <td>
-                                               
-                                                    @php
-                                                        $datas = $user->weekdays; 
-                                                        $data = explode(',', $datas); 
-                                                    @endphp
-                                                <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
-                                                    <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
-                                                @endforeach</span>
-                                                <!--end::Name-->
-                                            </td>
-                                            <!--end::Status=-->
-                                        </tr>
-                                        <!--end::Table row-->
-                                              <!--begin::Table row-->
-                                              <tr>
+                                       
+                                       
+                                            <!--begin::Table row-->
+                                            <tr>
+                                                <!--begin::Invoice=-->
+                                                <td>
+                                                    Mondays:
+                                                </td>
+                                                <!--end::Invoice=-->
+                                                <!--begin::Status=-->
+                                                <td>
+                                                
+                                                        @php
+                                                            $datas = $user->mondays; 
+                                                            $data = explode(',', $datas); 
+                                                        @endphp
+                                                    <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
+                                                        <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
+                                                    @endforeach</span>
+                                                    <!--end::Name-->
+                                                </td>
+                                                <!--end::Status=-->
+                                            </tr>
+                                            <!--end::Table row-->
+
+                                            <!--begin::Table row-->
+                                            <tr>
+                                                <!--begin::Invoice=-->
+                                                <td>
+                                                    Tuesdays:
+                                                </td>
+                                                <!--end::Invoice=-->
+                                                <!--begin::Status=-->
+                                                <td>
+                                                
+                                                        @php
+                                                            $datas = $user->tuesdays; 
+                                                            $data = explode(',', $datas); 
+                                                        @endphp
+                                                    <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
+                                                        <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
+                                                    @endforeach</span>
+                                                    <!--end::Name-->
+                                                </td>
+                                                <!--end::Status=-->
+                                            </tr>
+                                            <!--end::Table row-->
+
+                                            <!--begin::Table row-->
+                                            <tr>
+                                                <!--begin::Invoice=-->
+                                                <td>
+                                                    Wednesdays:
+                                                </td>
+                                                <!--end::Invoice=-->
+                                                <!--begin::Status=-->
+                                                <td>
+                                                
+                                                        @php
+                                                            $datas = $user->wednesdays; 
+                                                            $data = explode(',', $datas); 
+                                                        @endphp
+                                                    <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
+                                                        <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
+                                                    @endforeach</span>
+                                                    <!--end::Name-->
+                                                </td>
+                                                <!--end::Status=-->
+                                            </tr>
+                                            <!--end::Table row-->
+
+                                            <!--begin::Table row-->
+                                            <tr>
+                                                <!--begin::Invoice=-->
+                                                <td>
+                                                    Thursdays:
+                                                </td>
+                                                <!--end::Invoice=-->
+                                                <!--begin::Status=-->
+                                                <td>
+                                                
+                                                        @php
+                                                            $datas = $user->thursdays; 
+                                                            $data = explode(',', $datas); 
+                                                        @endphp
+                                                    <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
+                                                        <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
+                                                    @endforeach</span>
+                                                    <!--end::Name-->
+                                                </td>
+                                                <!--end::Status=-->
+                                            </tr>
+                                            <!--end::Table row-->
+                                            <!--begin::Table row-->
+                                            <tr>
+                                                <!--begin::Invoice=-->
+                                                <td>
+                                                    Fridays:
+                                                </td>
+                                                <!--end::Invoice=-->
+                                                <!--begin::Status=-->
+                                                <td>
+                                                
+                                                        @php
+                                                            $datas = $user->fridays; 
+                                                            $data = explode(',', $datas); 
+                                                        @endphp
+                                                    <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
+                                                        <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
+                                                    @endforeach</span>
+                                                    <!--end::Name-->
+                                                </td>
+                                                <!--end::Status=-->
+                                            </tr>
+                                            <!--end::Table row-->
+
+                                            <!--begin::Table row-->
+                                            <tr>
                                                 <!--begin::Invoice=-->
                                                 <td>
                                                     Saturday:
@@ -333,7 +434,7 @@
                                                 <!--end::Invoice=-->
                                                 <!--begin::Status=-->
                                                 <td>
-                                                   
+                                                    
                                                         @php
                                                             $datas = $user->saturdays; 
                                                             $data = explode(',', $datas); 
@@ -346,28 +447,30 @@
                                                 <!--end::Status=-->
                                             </tr>
                                             <!--end::Table row-->
-                                                <!--begin::Table row-->
-                                                <tr>
-                                                    <!--begin::Invoice=-->
-                                                    <td>
-                                                        Sunday:
-                                                    </td>
-                                                    <!--end::Invoice=-->
-                                                    <!--begin::Status=-->
-                                                    <td>
-                                                       
-                                                            @php
-                                                                $datas = $user->sundays; 
-                                                                $data = explode(',', $datas); 
-                                                            @endphp
-                                                        <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
-                                                            <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
-                                                        @endforeach</span>
-                                                        <!--end::Name-->
-                                                    </td>
-                                                    <!--end::Status=-->
-                                                </tr>
-                                                <!--end::Table row-->
+
+
+                                            <!--begin::Table row-->
+                                            <tr>
+                                                <!--begin::Invoice=-->
+                                                <td>
+                                                    Sunday:
+                                                </td>
+                                                <!--end::Invoice=-->
+                                                <!--begin::Status=-->
+                                                <td>
+                                                    
+                                                        @php
+                                                            $datas = $user->sundays; 
+                                                            $data = explode(',', $datas); 
+                                                        @endphp
+                                                    <span class="text-dark text-hover-primary"> &nbsp; @foreach ($data as $dat)
+                                                        <span class="badge badge-light fs-8 fw-bold ms-2">{{$dat}}</span>
+                                                    @endforeach</span>
+                                                    <!--end::Name-->
+                                                </td>
+                                                <!--end::Status=-->
+                                            </tr>
+                                            <!--end::Table row-->
                                         </tbody>
                                     </table>
 
@@ -417,12 +520,7 @@
                     <div class="text-center mb-13">
                         <!--begin::Title-->
                         <h4 class="d-flex justify-content-center align-items-center mb-3">Book Consultation with Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}?<h4>
-                        {{-- <span class="badge badge-circle badge-secondary ms-3">81</span></h1> --}}
-                        <!--end::Title-->
-                        {{-- <!--begin::Description-->
-                        <div class="text-muted fw-bold fs-5">If you need more info, please check out
-                        <a href="#" class="link-primary fw-bolder">FAQ Page</a>.</div>
-                        <!--end::Description--> --}}
+                  
                     </div>
                     <!--end::Heading-->
                     <!--begin::Users-->
@@ -443,20 +541,16 @@
                                     <div class="ms-5">
                                         <!--begin::Name-->
                                         <div class="d-flex align-items-center">
-                                            <a href="../../demo1/dist/pages/profile/overview.html" class="text-dark fw-bolder text-hover-primary fs-5 me-4">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</a>
+                                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-5 me-4">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</a>
                                             <!--begin::Label-->
-                                            <span class="badge badge-light-success d-flex align-items-center fs-8 fw-bold">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                            {{-- <span class="svg-icon svg-icon-8 svg-icon-success me-1">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="black" />
-                                                </svg>
-                                            </span> --}}
-                                            <!--end::Svg Icon-->Featured</span>
-                                            <!--end::Label-->
+                                            @if($availability == 'yes')
+                                            <span class="badge badge-light-success d-flex align-items-center fs-8 fw-bold">Available</span>
+                                            @else
+                                            <span class="badge badge-light-danger d-flex align-items-center fs-8 fw-bold">Currently Unavailable</span>
+                                            @endif
+                                        
                                         </div>
-                                        <!--end::Name-->
-                                        <!--begin::Desc-->
+                                        
                                         <span class="text-muted fw-bold mb-3">{{$user->rank}}</span>
                                         <!--end::Desc-->
                                     </div>
@@ -468,9 +562,9 @@
                                     <!--begin::Price-->
                                     <div class="text-end pb-3">
                                         <span class="text-dark fw-bolder fs-5">Chat: &#x20A6;{{number_format($user->chat_rate,0)}}</span>
-                                        <span class="text-muted fs-7">/hr</span>
+                                        <span class="text-muted fs-7">/slot</span>
                                         <span class="text-dark fw-bolder fs-5">Video: &#x20A6;{{number_format($user->video_rate,0)}}</span>
-                                        <span class="text-muted fs-7">/hr</span>
+                                        <span class="text-muted fs-7">/slot</span>
                                     </div>
                                     <!--end::Price-->
                                 </div>
@@ -482,7 +576,7 @@
                                 <!--begin::Section-->
                                 <div class="d-flex flex-column">
                                     <!--begin::Text-->
-                                    <p class="text-gray-700 fw-bold fs-6 mb-4">I have over 36 years working in the public sector. Retired but never tired, I'm here to continue doing what I love the most: helping people relieve them of their ailments.</p>
+                                    <p class="text-gray-700 fw-bold fs-6 mb-4">{!! @$user->about !!}</p>
                                     <!--end::Text-->
                                     <!--begin::Tags-->
                                     <div class="d-flex text-gray-700 fw-bold fs-7">
@@ -508,29 +602,31 @@
                                     <!--end::Separator-->
                                     <!--begin::Action-->
                                     <div class="d-flex flex-stack">
-                                        <!--begin::Progress-->
-                                        <div class="d-flex  mw-200px">
-                                            <div class="d-flex align-items-center mb-2">
-                                                {{-- <span class="text-gray-700 fs-6 fw-bold me-2">90%</span> --}}
-                                                <span class="text-muted fs-8">If you choose to continue,the respective fee will be dueducted from your account</span>
-                                            </div>
-                                            
-                                        </div>
-                                        <!--end::Progress-->
-                                        <!--begin::Button-->
+                                        
                                         <form action="{{route('book')}}" method="post">
                                             @csrf
                                             <input type="hidden" name="doctor_id" value="{{$user->id}}">
                                             <div class="row">
-                                            <select name="book_type" class="form-select form-select-solid mb-3"  data-control="select2" data-placeholder="Select Chat Type..." >
-                                                <option></option>
-                                                <option value="chat">Chat</option>
-                                                <option value="video">Video Call</option>
-                                               
-                                            </select>
-
-                                        <button type="submit" class="btn btn-sm btn-primary">Continue</button>
+                                                <div class="col-lg-4 fv-row">
+                                                    <select name="book_type" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Chat Type..." required>
+                                                        <option></option>
+                                                        <option value="chat">Chat</option>
+                                                        <option value="video">Video Call</option>
+                                                    </select>          
+                                                </div>
+                                                <div class="col-lg-4 fv-row">
+                                                    <select name="time_slot" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Time Slot..." >
+                                                        <option></option>
+                                                        <option value="chat">Chat</option>
+                                                        <option value="video">Video Call</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-4 fv-row">
+                                                    <button type="submit" class="btn btn- btn-primary">Continue</button>
+                                                </div>
+                                              
                                             </div>
+                                            <!--end::Row-->
                                         </form>
                                         <!--end::Button-->
                                     </div>
@@ -554,16 +650,3 @@
     <!--end::Modal - Select Users-->
 
     @endsection
-
-@section('js')
-<script src="/assets/plugins/custom/datatables/datatables.bundle.js"></script>
-<script src="/assets/js/custom/apps/customers/view/add-payment.js"></script>
-<script src="/assets/js/custom/apps/customers/view/adjust-balance.js"></script>
-<script src="/assets/js/custom/apps/customers/view/invoices.js"></script>
-<script src="/assets/js/custom/apps/customers/view/payment-method.js"></script>
-<script src="/assets/js/custom/apps/customers/view/payment-table.js"></script>
-<script src="/assets/js/custom/apps/customers/view/statement.js"></script>
-<script src="/assets/js/custom/apps/customers/update.js"></script>
-<script src="/assets/js/custom/modals/new-card.js"></script>
-<script src="/assets/js/custom/widgets.js"></script>
-@endsection

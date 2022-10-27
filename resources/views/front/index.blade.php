@@ -348,12 +348,12 @@
                             <div class="product">
                                 <!-- Card -->
                                 <div class="card shadow-sm">
-                                    <img  @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif
-                                        class="card-img-top" alt="Doctor Image" >
+                                    <a href="{{route('doctors.details',$user->number)}}"> <img  @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif
+                                        class="card-img-top" alt="Doctor Image" ></a>
                                     <div class="card-body">
                                         <span
                                             class="badge bg-info text-dark mb-2 fw-normal px-2 py-1">{{$user->rank}}</span>
-                                        <h4 class="mb-2">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</h4>
+                                        <a href="{{route('doctors.details',$user->number)}}"><h4 class="mb-2">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</h4></a>
                                         
                                         <div class="row g-0 mb-2 clearfix car-features">
 

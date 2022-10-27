@@ -10,19 +10,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File as File;
 
-
 class DoctorController extends Controller
 {
     public function SchedulesIndex()
     {
-        $data['weekdays'] = explode(',',Auth::user()->weekdays);
-        $data['saturdays'] = explode(',',Auth::user()->saturdays);
-        $data['sundays'] = explode(',',Auth::user()->sundays);
-        return view('profile.doctor_schedules',$data);
+        $data['mondays'] = explode(',', Auth::user()->mondays);
+        $data['tuesdays'] = explode(',', Auth::user()->tuesdays);
+        $data['wednesdays'] = explode(',', Auth::user()->wednesdays);
+        $data['thursdays'] = explode(',', Auth::user()->thursdays);
+        $data['fridays'] = explode(',', Auth::user()->fridays);
+        $data['saturdays'] = explode(',', Auth::user()->saturdays);
+        $data['sundays'] = explode(',', Auth::user()->sundays);
+        return view('profile.doctor_schedules', $data);
     }
     public function SettingsIndex()
     {
-        return view('profile.settings_doctor', [ 'user' => auth()->user() ]);
+        return view('profile.settings_doctor', ['user' => auth()->user()]);
     }
 
     public function SettingsStore(Request $request)
@@ -37,72 +40,97 @@ class DoctorController extends Controller
         $user->age = $request->age;
         $user->sex = $request->sex;
         $user->address = $request->address;
-    
+        $user->about = $request->about;
 
         if ($request->file('image') != null) {
 
-        $destination = 'uploads/avatar/'.$user->picture; 
-        
-        if (File::exists($destination)) {
-            File::delete($destination);
+            $destination = 'uploads/avatar/' . $user->picture;
+
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/avatar', $filename);
+            $user->picture = $filename;
         }
-        $file = $request->file('image');
-        $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
-        $file->move('uploads/avatar', $filename);
-        $user->picture = $filename;
+
+        $user->update();
+
+        Toastr::success('Profile has been Updated sucessfully', 'Done');
+        return redirect()->back();
     }
-    
-
-    $user->update();
-
-    Toastr::success('Profile has been Updated sucessfully', 'Done');
-    return redirect()->back();
-    }
-
 
     public function SchedulesStore(Request $request)
     {
 
         $id = Auth::user()->id;
         $user = User::FindorFail($id);
-       
-        //weekend
-        if($request->weekdays == ''){
+
+        //mondays
+        if ($request->mondays == '') {
             $user->weekdays = '';
-        }else{
-            $user->weekdays = implode(',', $request->weekdays);
+        } else {
+            $user->mondays = implode(',', $request->mondays);
         }
-       //saturdays
-        if($request->saturdays == ''){
+        //tuesdays
+        if ($request->tuesdays == '') {
+            $user->tuesdays = '';
+        } else {
+            $user->tuesdays = implode(',', $request->tuesdays);
+        }
+        //wednesdays
+        if ($request->wednesdays == '') {
+            $user->wednesdays = '';
+        } else {
+            $user->wednesdays = implode(',', $request->wednesdays);
+        }
+        //thursdays
+        if ($request->thursdays == '') {
+            $user->thursdays = '';
+        } else {
+            $user->thursdays = implode(',', $request->thursdays);
+        }
+        //fridays
+        if ($request->fridays == '') {
+            $user->fridays = '';
+        } else {
+            $user->fridays = implode(',', $request->fridays);
+        }
+        //saturdays
+        if ($request->saturdays == '') {
             $user->saturdays = '';
-        }else{
+        } else {
             $user->saturdays = implode(',', $request->saturdays);
         }
-      //sundays
-        if($request->sundays == ''){
-        $user->sundays = '';
-        }else{
+        //sundays
+        if ($request->sundays == '') {
+            $user->sundays = '';
+        } else {
             $user->sundays = implode(',', $request->sundays);
         }
-       
+
         $user->update();
 
         Toastr::success('Your Schedules has been set sucessfully', 'Done');
         return redirect()->back();
     }
 
-    public function MyPatients(){
+    public function MyPatients()
+    {
 
-        $data['doctors'] = Booking::where('doctor_id',Auth::user()->id)->where('status',1)->get();
-        return view('doctor.reservations',$data);
+        $data['doctors'] = Booking::where('doctor_id', Auth::user()->id)->where('status', 1)->get();
+        return view('doctor.reservations', $data);
     }
-    public function Chat(){
+    public function Chat()
+    {
 
         return view('test2');
     }
 
-    public function link(Request $request){
+    public function link(Request $request)
+    {
 
         $link = Booking::findorFail($request->get_id);
         $link->link = $request->link;
@@ -112,17 +140,18 @@ class DoctorController extends Controller
         return redirect()->back();
     }
 
-    public function prescription(Request $request){
+    public function prescription(Request $request)
+    {
 
-        $check = Prescription::where('booking_id',$request->get_id)->first();
-        if($check){
+        $check = Prescription::where('booking_id', $request->get_id)->first();
+        if ($check) {
             Toastr::error('Prescription has Already been sent', 'Not Allowed');
             return redirect()->back();
         }
-      
+
         $nameCount = count($request->name);
-        if($nameCount != NULL){
-            for ($i=0; $i < $nameCount; $i++){
+        if ($nameCount != null) {
+            for ($i = 0; $i < $nameCount; $i++) {
                 $prescription = new Prescription();
                 $prescription->booking_id = $request->get_id;
                 $prescription->name = $request->name[$i];
@@ -137,7 +166,5 @@ class DoctorController extends Controller
         Toastr::success('Prescriptiuon Sent sucessfully', 'Done');
         return redirect()->back();
     }
-
-
 
 }
