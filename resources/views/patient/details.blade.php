@@ -71,7 +71,7 @@
                                     </span>
                                     <!--end::Svg Icon-->
                                 </span></div>
-                                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit customer details">
+                                <span>
                                     <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#book">BOOK NOW</a>
                                 </span>
                             </div>
@@ -517,7 +517,7 @@
                 <!--begin::Modal body-->
                 <div class="modal-body scroll-y mx-5 mx-xl-10 pt-0 pb-15">
                     <!--begin::Heading-->
-                    <div class="text-center mb-13">
+                    <div class="text-center mb-3">
                         <!--begin::Title-->
                         <h4 class="d-flex justify-content-center align-items-center mb-3">Book Consultation with Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}?<h4>
                   
@@ -543,15 +543,16 @@
                                         <div class="d-flex align-items-center">
                                             <a href="#" class="text-dark fw-bolder text-hover-primary fs-5 me-4">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</a>
                                             <!--begin::Label-->
-                                            @if($availability == 'yes')
-                                            <span class="badge badge-light-success d-flex align-items-center fs-8 fw-bold">Available</span>
-                                            @else
-                                            <span class="badge badge-light-danger d-flex align-items-center fs-8 fw-bold">Currently Unavailable</span>
-                                            @endif
+                                           
                                         
                                         </div>
                                         
-                                        <span class="text-muted fw-bold mb-3">{{$user->rank}}</span>
+                                        <span class="text-muted fw-bold m-3">{{$user->rank}}</span>
+                                        @if($availability == 'yes')
+                                            <span class="badge badge-light-success fs-8 fw-bold">Available</span>
+                                            @else
+                                            <span class="badge badge-light-danger fs-8 fw-bold">Currently Unavailable</span>
+                                            @endif
                                         <!--end::Desc-->
                                     </div>
                                     <!--end::Details-->
