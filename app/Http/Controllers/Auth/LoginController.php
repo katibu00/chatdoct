@@ -44,10 +44,7 @@ class LoginController extends Controller
         request()->merge([$fieldType => $login]);
 
         if(!auth()->attempt($request->only($fieldType, 'password'),$request->remember)){
-            return response()->json([
-                'status'=>401,
-                'message'=>'Invalid Credentials'
-            ]);
+            
         }
 
         if ($request->number) {

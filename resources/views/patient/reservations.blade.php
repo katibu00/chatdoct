@@ -24,8 +24,6 @@
             <div class="row g-6 g-xl-9">
 
                 @foreach ($doctors as $key => $doctor)
-                  
-
                     <div class="col-md-6 col-xl-4">
                         <div class="card d-n4one" id="kt_widget_5">
                             <!--begin::Body-->
@@ -36,114 +34,138 @@
                                     <div class="d-flex align-items-center flex-grow-1">
                                         <!--begin::Avatar-->
                                         <div class="symbol symbol-45px me-5">
-                                            <img @if($doctor['book']['picture'] == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$doctor['book']['picture']}}" @endif alt="" class="w-100" />
+                                            <img @if ($doctor['book']['picture'] == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{ $doctor['book']['picture'] }}" @endif
+                                                alt="" class="w-100" />
                                         </div>
                                         <!--end::Avatar-->
                                         <!--begin::Info-->
                                         <div class="d-flex flex-column">
-                                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Dr. {{$doctor['book']['first_name']}}  {{$doctor['book']['middle_name']}}  {{$doctor['book']['last_name']}}</a>
-                                            <span class="text-gray-400 fw-bold">Booked {{$doctor->created_at->diffForHumans()}}</span>
+                                            <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Dr.
+                                                {{ $doctor['book']['first_name'] }} {{ $doctor['book']['middle_name'] }}
+                                                {{ $doctor['book']['last_name'] }}</a>
+                                            <span class="text-gray-400 fw-bold">Booked
+                                                {{ $doctor->created_at->diffForHumans() }}</span>
                                         </div>
                                         <!--end::Info-->
                                     </div>
                                     <!--end::User-->
                                     <!--begin::Menu-->
                                     <div class="my-0">
-                                        <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                        <button type="button"
+                                            class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
                                             <span class="svg-icon svg-icon-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                                    viewBox="0 0 24 24">
                                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000" />
-                                                        <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                        <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
-                                                        <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000" opacity="0.3" />
+                                                        <rect x="5" y="5" width="5" height="5"
+                                                            rx="1" fill="#000000" />
+                                                        <rect x="14" y="5" width="5" height="5"
+                                                            rx="1" fill="#000000" opacity="0.3" />
+                                                        <rect x="5" y="14" width="5" height="5"
+                                                            rx="1" fill="#000000" opacity="0.3" />
+                                                        <rect x="14" y="14" width="5" height="5"
+                                                            rx="1" fill="#000000" opacity="0.3" />
                                                     </g>
                                                 </svg>
                                             </span>
                                             <!--end::Svg Icon-->
                                         </button>
                                         <!--begin::Menu 2-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px" data-kt-menu="true">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <div class="menu-content fs-6 text-dark fw-bolder px-3 py-4">Quick Actions</div>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu separator-->
+                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px"
+                                            data-kt-menu="true">
                                             <div class="separator mb-3 opacity-75"></div>
-                                            <!--end::Menu separator-->
-                                            <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Request Cancellation</a>
+                                                <a href="#" class="menu-link px-3 cancel_booking"
+                                                    data-bs-toggle="modal" data-bs-target="#cancel_booking_modal"
+                                                    data-booking_id="{{ $doctor->id }}"
+                                                    data-doctor_name="Dr. {{ $doctor['book']['first_name'] . ' ' . $doctor['book']['middle_name'] . ' ' . $doctor['book']['last_name'] }}">Cancel
+                                                    Booking</a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Adjust Time</a>
+                                                <a href="#" class="menu-link px-3 adjust_time" data-bs-toggle="modal"
+                                                    data-bs-target="#adjust_time_modal"
+                                                    data-booking_id="{{ $doctor->id }}"
+                                                    data-doctor_name="Dr. {{ $doctor['book']['first_name'] . ' ' . $doctor['book']['middle_name'] . ' ' . $doctor['book']['last_name'] }}">Adjust
+                                                    Time</a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Change booking Type</a>
+                                                <a href="#" class="menu-link px-3 change_booking" data-bs-toggle="modal"
+                                                    data-bs-target="#change_booking_modal"
+                                                    data-booking_id="{{ $doctor->id }}"
+                                                    data-doctor_name="Dr. {{ $doctor['book']['first_name'] . ' ' . $doctor['book']['middle_name'] . ' ' . $doctor['book']['last_name'] }}">Change booking Type</a>
                                             </div>
-                                            <!--end::Menu item-->
-                                       
+                                           
                                         </div>
                                         <!--end::Menu 2-->
                                     </div>
                                     <!--end::Menu-->
                                 </div>
                                 <!--end::Header-->
-                               
+
                                 <div class="d-flex flex-wrap mb-5">
                                     <div class="row">
-                                    <!--begin::Due-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
-                                        @if($doctor->pre_consultation == 1)
-                                        <i style="font-size: 40px; color: green;"  class="las la-check-square"></i>
-                                        @else
-                                        <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
-                                        @endif
-                                        <div class="fw-bold text-gray-400">Pre-consultation Form</div>
-                                    </div>
-                                    <!--end::Due-->
-                                    <!--begin::Due-->
-                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
-                                        @if($doctor->prescription == 1)
-                                        <i style="font-size: 40px; color: green;"  class="las la-check-square"></i>
-                                        @else
-                                        <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
-                                        @endif
-                                        <div class="fw-bold text-gray-400">Prescription</div>
-                                    </div>
-                                    <!--end::Due-->
+                                        <!--begin::Due-->
+                                        <div
+                                            class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
+                                            @if ($doctor->pre_consultation == 1)
+                                                <i style="font-size: 40px; color: green;" class="las la-check-square"></i>
+                                            @else
+                                                <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
+                                            @endif
+                                            <div class="fw-bold text-gray-400">Pre-consultation Form</div>
+                                        </div>
+                                        <!--end::Due-->
+                                        <!--begin::Due-->
+                                        <div
+                                            class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
+                                            @if ($doctor->prescription == 1)
+                                                <i style="font-size: 40px; color: green;" class="las la-check-square"></i>
+                                            @else
+                                                <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
+                                            @endif
+                                            <div class="fw-bold text-gray-400">Prescription</div>
+                                        </div>
+                                        <!--end::Due-->
                                     </div>
                                 </div>
 
                                 <!--begin::Separator-->
                                 <div class="separator mb-4"></div>
                                 <!--end::Separator-->
-                                
+
                                 <div class="symbol-group symbol-hover mb-3">
                                     <!--begin::User-->
                                     <div class="" data-bs-toggle="tooltip" title="Fill out the pre-consultation">
-                                       <a class="btn btn-sm  btn-bg-info btn-active-color-info text-white doctor" data-bs-toggle="modal" data-bs-target="#form" data-id="{{$doctor->id}}">Fill Form</a>
+                                        <a class="btn btn-sm  btn-bg-info btn-active-color-info text-white doctor"
+                                            data-bs-toggle="modal" data-bs-target="#form"
+                                            data-id="{{ $doctor->id }}">Fill Form</a>
                                     </div>
                                     <!--begin::User-->
-                                    @if($doctor->book_type == 'chat')
-                                    <!--begin::User-->
-                                    <div class="ml-1" data-bs-toggle="tooltip" title="Open chat with the doctor">
-                                      <a  href="{{route('chats')}}" class="btn btn-sm  btn-bg-light btn-active-color-primary">Chat</a>
-                                    </div>
-                                    <!--begin::User-->
+                                    @if ($doctor->book_type == 'chat')
+                                        <!--begin::User-->
+                                        <div class="ml-1" data-bs-toggle="tooltip" title="Open chat with the doctor">
+                                            <a href="{{ route('chats') }}"
+                                                class="btn btn-sm  btn-bg-light btn-active-color-primary">Chat</a>
+                                        </div>
+                                        <!--begin::User-->
                                     @else
-                                    <div class="ml-1" data-bs-toggle="tooltip" title="View and copy the video conference link sent by the doctor">
-                                        <a class="btn btn-sm  btn-bg-primary mx-1 btn-active-color-secondary text-white doctor" data-bs-toggle="modal" data-bs-target="#link{{$key}}" data-id="{{$doctor->id}}">Link</a>
-                                    </div>
+                                        <div class="ml-1" data-bs-toggle="tooltip"
+                                            title="View and copy the video conference link sent by the doctor">
+                                            <a class="btn btn-sm  btn-bg-primary mx-1 btn-active-color-secondary text-white doctor"
+                                                data-bs-toggle="modal" data-bs-target="#link{{ $key }}"
+                                                data-id="{{ $doctor->id }}">Link</a>
+                                        </div>
                                     @endif
-                                    @if($doctor->prescription == 1)
-                                    <div class="" data-bs-toggle="tooltip" title="Download the prescription form issued by the doctor">
-                                        <a class="btn btn-sm  btn-bg-success  btn-active-color-secondary text-white doctor" href="{{route('download',$doctor->id)}}">Download</a>
-                                    </div>
+                                    @if ($doctor->prescription == 1)
+                                        <div class="" data-bs-toggle="tooltip"
+                                            title="Download the prescription form issued by the doctor">
+                                            <a class="btn btn-sm  btn-bg-success  btn-active-color-secondary text-white doctor"
+                                                href="{{ route('download', $doctor->id) }}">Download</a>
+                                        </div>
                                     @endif
-                                   
+
                                 </div>
 
                             </div>
@@ -188,8 +210,8 @@
                                 <!--begin::Modal body-->
                                 <div class="modal-body py-10 px-lg-17">
                                     <!--begin::Scroll-->
-                                    <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true"
-                                        data-kt-scroll-activate="{default: false, lg: true}"
+                                    <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll"
+                                        data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
                                         data-kt-scroll-max-height="auto"
                                         data-kt-scroll-dependencies="#kt_modal_new_address_header"
                                         data-kt-scroll-wrappers="#kt_modal_new_address_scroll"
@@ -485,12 +507,123 @@
         <!--end::Modal - New Faculty-->
 
 
+
+        <!--begin::change booking type Modal -->
+        <div class="modal fade" id="change_booking_modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <div class="modal-content">
+                    <div class="modal-header" id="">
+                        <h2 class="modal_title"></h2>
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                        rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                        transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal-body py-10 px-lg-17">
+
+                        <div class="col-md-6 fv-row">
+                            <select id="book_type" class="form-select form-select-solid mb-3" data-control="select2"
+                                data-hide-search="true" data-placeholder="Book Type...">
+                                <option></option>
+                                <option value="video">Video</option>
+                                <option value="chat">Chat</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer flex-center">
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Dismiss</button>
+                        <button type="button" class="btn btn-primary me-3 change_book_btn">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--begin::change time slot Modal -->
+        <div class="modal fade" id="adjust_time_modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <div class="modal-content">
+                    <div class="modal-header" id="">
+                        <h2 class="modal_title"></h2>
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                        rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                        transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal-body py-10 px-lg-17">
+
+                        <div class="col-md-6 fv-row">
+                            <select name="time_slot" id="time_slot" class="form-select form-select-solid mb-3" data-control="select2"
+                                data-hide-search="true" data-placeholder="Time Slot...">
+                                <option></option>
+                                <option value="Morning">Morning (6AM - 11:59PM)</option>
+                                <option value="Afternoon">Afternoon (12PM - 5:59PM)</option>
+                                <option value="Evening">Evening (6PM - 11:59PM)</option>
+                                <option value="Night">Night (12AM - 5:59AM)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer flex-center">
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-light me-3">Dismiss</button>
+                        <button type="button" class="btn btn-primary me-3 adjust_btn">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--begin::cancel booking Modal -->
+        <div class="modal fade" id="cancel_booking_modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <div class="modal-content">
+                    <div class="modal-header" id="">
+                        <h2 class="modal_title"></h2>
+                        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                        rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                    <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                        transform="rotate(45 7.41422 6)" fill="black" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal-body py-10 px-lg-17">
+                        <p class="text-muted">By Cancelling This booking, You will all progress regarding this booking. You
+                            will not be able to reverse this action. Your Funds will be refunded. </p>
+                    </div>
+                    <div class="modal-footer flex-center">
+                        <button type="button" class="btn btn-danger me-3 cancel_btn">Continue</button>
+                        <button type="reset" data-bs-dismiss="modal" class="btn btn-success me-3">Dismiss</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
     <!--end::Post-->
+    <input type="hidden" id="hold_booking_id" />
 
 @endsection
 
 @section('js2')
+
 
 
     <script>
@@ -552,6 +685,341 @@
 
                     }
                 })
+            });
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.cancel_booking', function() {
+
+            let booking_id = $(this).data('booking_id');
+            let doctor_name = $(this).data('doctor_name');
+            $('#hold_booking_id').val(booking_id);
+            $('.modal_title').html('Cancel your Booking with ' + doctor_name);
+
+        });
+        $(document).on('click', '.adjust_time', function() {
+
+            let booking_id = $(this).data('booking_id');
+            let doctor_name = $(this).data('doctor_name');
+            $('#hold_booking_id').val(booking_id);
+            $('.modal_title').html('Adjust time slot for your booking with ' + doctor_name + '?');
+
+        });
+        $(document).on('click', '.change_booking', function() {
+
+            let booking_id = $(this).data('booking_id');
+            let doctor_name = $(this).data('doctor_name');
+            $('#hold_booking_id').val(booking_id);
+            $('.modal_title').html('Change booking type with ' + doctor_name + '?');
+
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $(document).on("click", ".change_book_btn", function(e) {
+                e.preventDefault();
+                var data = {
+                    booking_id: $("#hold_booking_id").val(),
+                    book_type: $("#book_type").val(),
+
+                };
+
+                spinner =
+                    '<div class="spinner-border" style="height: 20px; width: 20px;" role="status"></div><span class="indicator-label"> &nbsp;Cancelling . . .</span>';
+                $(".change_book_btn").html(spinner);
+                $(".change_book_btn").attr("disabled", true);
+
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('booking.change_book') }}",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+
+
+                        if (response.status == 400) {
+
+                            $('.change_book_btn').text("Continue");
+                            $('.change_book_btn').attr("disabled", false);
+                            $('#change_booking_modal').modal('hide');
+                            Command: toastr["error"](response.message)
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+
+                        }
+                        if (response.status == 200) {
+
+                            $('.change_book_btn').text("Continue");
+                            $('.change_book_btn').attr("disabled", false);
+                            $('#change_booking_modal').modal('hide');
+                            Command: toastr["success"](response.message)
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            window.location.replace('{{ route('reservations') }}');
+                        }
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        if (xhr.status === 419) {
+                            Command: toastr["error"](
+                                "Session expired. please login again."
+                            );
+                            toastr.options = {
+                                closeButton: false,
+                                debug: false,
+                                newestOnTop: false,
+                                progressBar: false,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: false,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                timeOut: "5000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                            };
+
+                            setTimeout(() => {
+                                window.location.replace('{{ route('login') }}');
+                            }, 2000);
+                        }
+                    },
+                });
+            });
+            $(document).on("click", ".adjust_btn", function(e) {
+                e.preventDefault();
+                var data = {
+                    booking_id: $("#hold_booking_id").val(),
+                    time_slot: $("#time_slot").val(),
+
+                };
+
+                spinner =
+                    '<div class="spinner-border" style="height: 20px; width: 20px;" role="status"></div><span class="indicator-label"> &nbsp;Cancelling . . .</span>';
+                $(".adjust_btn").html(spinner);
+                $(".adjust_btn").attr("disabled", true);
+
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('booking.adjust') }}",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+
+
+                        if (response.status == 400) {
+
+                            $('.adjust_btn').text("Continue");
+                            $('.adjust_btn').attr("disabled", false);
+                            // $('#cancel_booking_modal').modal('hide');
+                            Command: toastr["error"](response.message)
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+
+                        }
+                        if (response.status == 200) {
+
+                            $('.adjust_btn').text("Continue");
+                            $('.adjust_btn').attr("disabled", false);
+                            $('#adjust_time_modal').modal('hide');
+                            Command: toastr["success"](response.message)
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+                            window.location.replace('{{ route('reservations') }}');
+                        }
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        if (xhr.status === 419) {
+                            Command: toastr["error"](
+                                "Session expired. please login again."
+                            );
+                            toastr.options = {
+                                closeButton: false,
+                                debug: false,
+                                newestOnTop: false,
+                                progressBar: false,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: false,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                timeOut: "5000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                            };
+
+                            setTimeout(() => {
+                                window.location.replace('{{ route('login') }}');
+                            }, 2000);
+                        }
+                    },
+                });
+            });
+            $(document).on("click", ".cancel_btn", function(e) {
+                e.preventDefault();
+                var data = {
+                    booking_id: $("#hold_booking_id").val(),
+
+                };
+
+                spinner =
+                    '<div class="spinner-border" style="height: 20px; width: 20px;" role="status"></div><span class="indicator-label"> &nbsp;Cancelling . . .</span>';
+                $(".cancel_btn").html(spinner);
+                $(".cancel_btn").attr("disabled", true);
+
+                $.ajaxSetup({
+                    headers: {
+                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    },
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('booking.cancel') }}",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+
+
+                        if (response.status == 200) {
+
+                            $('.cancel_btn').text("Continue");
+                            $('.cancel_btn').attr("disabled", false);
+                            $('.cancel_booking_modal').modal('hide');
+                            Command: toastr["success"](response.message)
+                            toastr.options = {
+                                "closeButton": false,
+                                "debug": false,
+                                "newestOnTop": false,
+                                "progressBar": false,
+                                "positionClass": "toast-top-right",
+                                "preventDuplicates": false,
+                                "onclick": null,
+                                "showDuration": "300",
+                                "hideDuration": "1000",
+                                "timeOut": "5000",
+                                "extendedTimeOut": "1000",
+                                "showEasing": "swing",
+                                "hideEasing": "linear",
+                                "showMethod": "fadeIn",
+                                "hideMethod": "fadeOut"
+                            }
+
+
+                            window.location.replace('{{ route('reservations') }}');
+
+
+
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        if (xhr.status === 419) {
+                            Command: toastr["error"](
+                                "Session expired. please login again."
+                            );
+                            toastr.options = {
+                                closeButton: false,
+                                debug: false,
+                                newestOnTop: false,
+                                progressBar: false,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: false,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                timeOut: "5000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                            };
+
+                            setTimeout(() => {
+                                window.location.replace('{{ route('login') }}');
+                            }, 2000);
+                        }
+                    },
+                });
             });
         });
     </script>

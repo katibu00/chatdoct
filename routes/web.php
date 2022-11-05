@@ -129,6 +129,10 @@ Route::group(['prefix' => 'patient', 'middleware' => ['auth']], function(){
 
     Route::get('/prescription/download/{id}', [App\Http\Controllers\PatientController::class, 'download'])->name('download');
 
+    Route::post('/cancel_booking', [App\Http\Controllers\PatientController::class, 'cancelBooking'])->name('booking.cancel');
+    Route::post('/adjust_booking', [App\Http\Controllers\PatientController::class, 'adjustBooking'])->name('booking.adjust');
+    Route::post('/change_booking', [App\Http\Controllers\PatientController::class, 'changeBooking'])->name('booking.change_book');
+
 });
 
 Route::post('/pay', [App\Http\Controllers\WalletController::class, 'redirectToGateway'])->name('pay');

@@ -99,6 +99,7 @@ class PatientController extends Controller
         $book = new Booking();
         $book->patient_id = $id;
         $book->doctor_id = $request->doctor_id;
+        $book->time_slot = $request->time_slot;
         $book->book_type = $request->book_type;
         $book->save();
 
@@ -114,7 +115,7 @@ class PatientController extends Controller
         Toastr::success('Your Booking has been made sucessfully', 'Done');
 
         $data['users'] = User::where('role', 'doctor')->where('status', 1)->get();
-        return redirect()->back();
+        return redirect()->route('reservations');
     }
 
     public function MyReservations()
@@ -158,4 +159,96 @@ class PatientController extends Controller
         $pdf = PDF::loadView('pdf.prescription', compact('book', 'medicines'));
         return $pdf->download('prescription_form.pdf');
     }
+
+
+    public function changeBooking(Request $request)
+    {
+        // return $request->all();
+       $booking = Booking::find($request->booking_id);
+       if($booking->book_type == $request->book_type)
+       {
+            return response()->json([
+                'status'=>400,
+                'message'=>'No change Made. You are already on this book type.'
+            ]);
+       }
+       $doctor = User::select('chat_rate','video_rate')->where('id',$booking->doctor_id)->first();
+       $change = $doctor->video_rate - $doctor->chat_rate;
+
+    //    $user = User::select('balance')->where('id', auth()->user()->id)->first();
+       $user = User::find(auth()->user()->id);
+     
+       if($request->book_type == 'chat')
+       {
+        // return 'chat';
+            $user->balance = $user->balance + $change;
+            $user->update();
+       }
+       if($request->book_type == 'video')
+       {
+            $user->balance = $user->balance - $change;
+            $user->update();
+       }
+   
+
+      $booking->book_type = $request->book_type;
+      $booking->update();
+
+       return response()->json([
+            'status'=>200,
+            'message'=>'Booking Type Changed Successfully'
+        ]);
+
+    }
+    public function adjustBooking(Request $request)
+    {
+        // return $request->all();
+       $booking = Booking::find($request->booking_id);
+       $doctor = User::select('chat_rate','video_rate')->where('id',$booking->doctor_id)->first();
+
+       $day = strtolower(date('l')) . 's';
+       $doctor = User::where('id', $booking->doctor_id)->first();
+       $schedules = explode(',', $doctor->$day);
+
+       if (!in_array($request->time_slot, $schedules)) {
+           return response()->json([
+            'status'=>400,
+            'message'=>'Doctor Unavailable at that time slot. Please choose another time slot and try again'
+        ]);
+       }
+
+      $booking->time_slot = $request->time_slot;
+      $booking->update();
+
+       return response()->json([
+            'status'=>200,
+            'message'=>'Time slot adjusted Successfully'
+        ]);
+
+    }
+    public function cancelBooking(Request $request)
+    {
+       $booking = Booking::find($request->booking_id);
+       $doctor = User::select('chat_rate','video_rate')->where('id',$booking->doctor_id)->first();
+
+       if($booking->book_type == 'video'){
+            $user = User::find(auth()->user()->id);
+            $user->balance = $user->balance+ $doctor->video_rate;
+            $user->update();
+       }
+       if($booking->book_type == 'chat'){
+            $user = User::find(auth()->user()->id);
+            $user->balance = $user->balance+ $doctor->chat_rate;
+            $user->update();
+       }
+       $booking->delete();
+
+       return response()->json([
+            'status'=>200,
+            'message'=>'Booking Cancelled Successfully'
+        ]);
+
+    }
+
+    
 }

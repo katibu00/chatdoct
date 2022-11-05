@@ -616,7 +616,7 @@
                                                     </select>          
                                                 </div>
                                                 <div class="col-md-5 fv-row">
-                                                    <select name="time_slot" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Time Slot..." >
+                                                    <select name="time_slot" id="time_slot" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Time Slot..." >
                                                         <option></option>
                                                         <option value="Morning">Morning (6AM - 11:59PM)</option>
                                                         <option value="Afternoon">Afternoon (12PM - 5:59PM)</option>
