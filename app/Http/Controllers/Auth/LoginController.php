@@ -25,7 +25,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        //    dd($request->all());
+        //    return $request->all();
 
         $validator = Validator::make($request->all(), [
             'email' => 'required|max:191',
@@ -44,7 +44,10 @@ class LoginController extends Controller
         request()->merge([$fieldType => $login]);
 
         if(!auth()->attempt($request->only($fieldType, 'password'),$request->remember)){
-            
+            return response()->json([
+                'status'=>401,
+                'message'=>'Invalid Credentials'
+            ]);
         }
 
         if ($request->number) {

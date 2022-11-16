@@ -106,28 +106,88 @@
 
                                 <div class="d-flex flex-wrap mb-5">
                                     <div class="row">
-                                        <!--begin::Due-->
-                                        <div
-                                            class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
-                                            @if ($doctor->pre_consultation == 1)
-                                                <i style="font-size: 40px; color: green;" class="las la-check-square"></i>
-                                            @else
-                                                <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
-                                            @endif
-                                            <div class="fw-bold text-gray-400">Pre-consultation Form</div>
-                                        </div>
-                                        <!--end::Due-->
-                                        <!--begin::Due-->
-                                        <div
-                                            class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
-                                            @if ($doctor->prescription == 1)
-                                                <i style="font-size: 40px; color: green;" class="las la-check-square"></i>
-                                            @else
-                                                <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
-                                            @endif
-                                            <div class="fw-bold text-gray-400">Prescription</div>
-                                        </div>
-                                        <!--end::Due-->
+                                       
+
+                                     <!--begin::Due-->
+                                     <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                         <div class="d-flex align-items-center mb-">
+                                             <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Pre-consultation Form</span>
+                                                @if ($doctor->pre_consultation == 1)                                         
+                                                <span class="svg-icon svg-icon-1 svg-icon-success">
+                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                     <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                     <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                                                 </svg>
+                                                </span>
+                                                 @else
+                                                 <span class="svg-icon svg-icon-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                        <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                                        <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                @endif
+                                             <!--end::Svg Icon-->
+                                         </div>
+                                     </div>
+                                     <!--end::Due-->
+
+                                    <!--begin::Due-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                         <div class="d-flex align-items-center mb-">
+                                             <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Prescription</span>
+                                            
+                                                @if ($doctor->prescription == 1) 
+                                                <span class="svg-icon svg-icon-1 svg-icon-success">                                            
+                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                     <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                     <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                                                 </svg>
+                                                </span>
+                                                 @else
+                                                 <span class="svg-icon svg-icon-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                        <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                                        <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                @endif
+                                             <!--end::Svg Icon-->
+                                         </div>
+                                     </div>
+                                     <!--end::Due-->
+
+                                    <!--begin::Due-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                         <div class="d-flex align-items-center mb-">
+                                             <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Booking Type</span>
+                                             <span class="svg-icon svg-icon-1 svg-icon-success">
+                                                @if ($doctor->book_type == 'chat')                                             
+                                                <span class="badge badge-light fw-bolder me-auto px-4 py-3">Chat</span>
+                                                 @else
+                                                 <span class="badge badge-light fw-bolder me-auto px-4 py-3">Video</span>
+                                                @endif
+                                             </span>
+                                             <!--end::Svg Icon-->
+                                         </div>
+                                     </div>
+                                     <!--end::Due-->
+                                    <!--begin::Due-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                         <div class="d-flex align-items-center mb-">
+                                             <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Time Block</span>
+                                             <span class="svg-icon svg-icon-1 svg-icon-success">
+                                               
+                                                 <span class="badge badge-light fw-bolder me-auto px-4 py-3">{{ $doctor->time_slot }}</span>
+                                                
+                                             </span>
+                                             <!--end::Svg Icon-->
+                                         </div>
+                                     </div>
+                                     <!--end::Due-->
+                                   
                                     </div>
                                 </div>
 

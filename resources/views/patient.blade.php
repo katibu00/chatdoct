@@ -96,7 +96,7 @@
                                 <!--begin::Card body-->
                                 <div class="card-body pt-0 pb-5">
                                     <!--begin::Table-->
-                                    <table class="table align-middle table-row-dashed gy-5">
+                                    <table class="table align-middle table-row-dashed gy-5 table-responsive">
                                         <!--begin::Table head-->
                                         <thead class="border-bottom border-gray-200 fs-7 fw-bolder">
                                             <!--begin::Table row-->
@@ -104,8 +104,8 @@
                                                 <th>S/N</th>
                                                 <th>Doctor</th>
                                                 <th>Type</th>
-                                                <th>Prescription</th>
                                                 <th>Pre-consultation</th>
+                                                <th>Prescription</th>
                                                
                                             </tr>
                                             <!--end::Table row-->
@@ -123,15 +123,13 @@
                                                 <!--end::Invoice=-->
                                                 <!--begin::Status=-->
                                                 <td>
-                                                    <span class="badge badge-light-success">Dr. {{$booking['book']['first_name']}} {{$booking['book']['last_name']}}</span>
+                                                   Dr. {{$booking['book']['first_name']}} {{$booking['book']['last_name']}}
                                                 </td>
-                                                <!--end::Status=-->
-                                                <!--begin::Amount=-->
+                                               
                                                 <td>{{$booking->book_type}}</td>
-                                                <!--end::Amount=-->
-                                                <!--begin::Date=-->
-                                                <td>{{$booking->prescription == 1? 'YES' : 'NO'}}</td>
-                                                <td>{{$booking->pre_consultation == 1? 'YES' : 'NO'}}</td>
+                                              
+                                                <td>{!! $booking->pre_consultation == 1? '<span class="badge badge-light-success">YES</span>' : '<span class="badge badge-light-danger">NO</span>' !!}</td>
+                                                <td>{!! $booking->prescription == 1? '<span class="badge badge-light-success">YES</span>' : '<span class="badge badge-light-danger">NO</span>' !!}</td>
                                                 
                                                 <!--end::Date=-->
                                             </tr>

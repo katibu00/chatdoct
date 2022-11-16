@@ -237,7 +237,7 @@ $user = Auth::user()->role;
                         <span class="menu-bullet">
                             <span class="fa fa-calendar"></span>
                         </span>
-                        <span class="menu-title">My Reservations</span>
+                        <span class="menu-title">My Bookings</span>
                     </a>
                 </div>
 

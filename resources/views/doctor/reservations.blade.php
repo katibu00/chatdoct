@@ -18,95 +18,190 @@
                 <span class="fs-6 text-gray-400 fw-bold ms-1">Active</span></h3>
                 <!--end::Heading-->
             </div>
-            <!--end::Toolbar-->
-            <!--begin::Row-->
             <div class="row g-6 g-xl-9">
 
                 @foreach ($doctors as $key => $doctor)
                     
-                <!--begin::Col-->
+               
                 <div class="col-md-6 col-xl-4">
-                    <!--begin::Card-->
-                    <span class="card border border-2 border-gray-300 border-hover">
-                        <!--begin::Card header-->
-                        <div class="card-header border-0 pt-9">
-                            <!--begin::Card Title-->
-                            <div class="card-title m-0">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-50px w-50px bg-light">
-                                    <img @if($doctor['patient']['picture'] == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$doctor['patient']['picture']}}" @endif alt="" class="w-100" />
-                                </div>
-                                <!--end::Avatar-->
-                            </div>
-                            <!--end::Car Title-->
-                            <!--begin::Card toolbar-->
-                            <div class="card-toolbar">
-                                <span class="badge badge-light-primary fw-bolder me-auto px-4 py-3">Active</span>
-                            </div>
-                            <!--end::Card toolbar-->
-                        </div>
-                        <!--end:: Card header-->
-                        
-                        <!--begin:: Card body-->
-                        <div class="card-body p-9">
-                            <!--begin::Name-->
-                            <div class="fs-3 fw-bolder text-dark">{{$doctor['patient']['first_name']}}  {{$doctor['patient']['middle_name']}}  {{$doctor['patient']['last_name']}}</div>
-                            <!--end::Name-->
-                            <!--begin::Description-->
-                            <p class="text-gray-400 fw-bold fs-5 mt-1 mb-7">Booked {{$doctor->created_at->diffForHumans()}}</p>
-                            <!--end::Description-->
-                            <!--begin::Info-->
-                            {{-- <div class="d-flex flex-wrap mb-5">
-                                <!--begin::Due-->
-                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-5 px-4 me-7 mb-3 text-center">
-                                    @if($doctor->pre_consultation == 1)
-                                    <i style="font-size: 40px; color: green;"  class="las la-check-square"></i>
-                                    @else
-                                    <i style="font-size: 40px; color: red;" class="lar la-window-close"></i>
-                                    @endif
-                                    <div class="fw-bold text-gray-400">Pre Consultation Form</div>
-                                </div>
-                                <!--end::Due-->
-                               
-                            </div> --}}
-                            <!--end::Info-->
-                      
-                            <!--begin::Users-->
-                            <div class="symbol-group symbol-hover">
+                    <div class="card d-n4one" id="kt_widget_5">
+                        <!--begin::Body-->
+                        <div class="card-body pb-0">
+                            <!--begin::Header-->
+                            <div class="d-flex align-items-center mb-5">
                                 <!--begin::User-->
-                                <div class="">
-                                   <a class="btn btn-sm  btn-bg-info btn-active-color-secondary text-white doctor" data-bs-toggle="modal" data-bs-target="#form{{$key}}" data-id="{{$doctor->id}}">Form</a>
+                                <div class="d-flex align-items-center flex-grow-1">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-45px me-5">
+                                        <img @if ($doctor['patient']['picture'] == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{ $doctor['patient']['picture'] }}" @endif
+                                            alt="" class="w-100" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Info-->
+                                    <div class="d-flex flex-column">
+                                        <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+                                            {{ $doctor['patient']['first_name'] }} {{ $doctor['patient']['middle_name'] }}
+                                            {{ $doctor['patient']['last_name'] }}</a>
+                                        <span class="text-gray-400 fw-bold">Booked
+                                            {{ $doctor->created_at->diffForHumans() }}</span>
+                                    </div>
+                                    <!--end::Info-->
                                 </div>
-                                <!--begin::User-->
-                                <!--begin::User-->
-                                <div class="ml-2">
-                                    @if($doctor->book_type == 'chat')
+                                <!--end::User-->
+                                <!--begin::Menu-->
+                                <div class="my-0">
+                                    <button type="button"
+                                        class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                                viewBox="0 0 24 24">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="5" y="5" width="5" height="5"
+                                                        rx="1" fill="#000000" />
+                                                    <rect x="14" y="5" width="5" height="5"
+                                                        rx="1" fill="#000000" opacity="0.3" />
+                                                    <rect x="5" y="14" width="5" height="5"
+                                                        rx="1" fill="#000000" opacity="0.3" />
+                                                    <rect x="14" y="14" width="5" height="5"
+                                                        rx="1" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </button>
+                                    <!--begin::Menu 2-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px"
+                                        data-kt-menu="true">
+                                        <div class="separator mb-3 opacity-75"></div>
+                                        
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3 cancel_booking" data-bs-toggle="modal" data-bs-target="#form{{$key}}" data-id="{{$doctor->id}}">Pre-consultation Form</a>
+                                        </div>
 
-                                  <a  href="{{route('doctor.chat')}}" class="btn btn-sm  btn-bg-light btn-active-color-primary">Go to Chat</a>
+
+                                        @if($doctor->book_type == 'chat')
+
+                                        <div class="menu-item px-3">
+                                            <a  href="{{route('doctor.chat')}}" class="menu-link">Go to Chat</a>
+                                        </div>
+
+                                        @else
+                                          <div class="menu-item px-3">
+                                             <a class="menu-link" data-bs-toggle="modal" data-bs-target="#link{{$key}}" data-id="{{$doctor->id}}">Send Link</a>
+                                          </div>
+                                        @endif
+
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3 cancel_booking" data-bs-toggle="modal" data-bs-target="#subscription" data-id="{{$doctor->id}}">Prescription</a>
+                                        </div>
+                                       
+                                       
+                                    </div>
+                                    <!--end::Menu 2-->
+                                </div>
+                                <!--end::Menu-->
+                            </div>
+                            <!--end::Header-->
+
+                            <div class="d-flex flex-wrap mb-5">
+                                <div class="row">
                                    
-                                  @else
 
-                                  <a class="btn btn-sm  btn-bg-success ml-1 btn-active-color-info text-white doctor" data-bs-toggle="modal" data-bs-target="#link{{$key}}" data-id="{{$doctor->id}}">Link</a>
-
-                                  @endif
-                                  
-                                </div>
-                                <!--begin::User-->
-
-                                <div class="">
-                                    <a class="btn btn-sm  btn-bg-primary ml-1 btn-active-color-secondary text-white subs" data-bs-toggle="modal" data-bs-target="#subscription" data-id="{{$doctor->id}}">Prescription</a>
+                                 <!--begin::Due-->
+                                 <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                     <div class="d-flex align-items-center mb-">
+                                         <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Pre-consultation Form</span>
+                                            @if ($doctor->pre_consultation == 1)                                         
+                                            <span class="svg-icon svg-icon-1 svg-icon-success">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                 <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                 <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                                             </svg>
+                                            </span>
+                                             @else
+                                             <span class="svg-icon svg-icon-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                    <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                                    <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                                                </svg>
+                                            </span>
+                                            @endif
+                                         <!--end::Svg Icon-->
+                                     </div>
                                  </div>
-                               
-                            </div>
-                            <!--end::Users-->
-                        </div>
-                        <!--end:: Card body-->
-                    </span>
-                    <!--end::Card-->
-                </div>
-                <!--end::Col-->
+                                 <!--end::Due-->
 
-                 <!--begin::Modal - View Details-->
+                                <!--begin::Due-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                     <div class="d-flex align-items-center mb-">
+                                         <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Prescription</span>
+                                        
+                                            @if ($doctor->prescription == 1) 
+                                            <span class="svg-icon svg-icon-1 svg-icon-success">                                            
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                 <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                 <path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="black" />
+                                             </svg>
+                                            </span>
+                                             @else
+                                             <span class="svg-icon svg-icon-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="black" />
+                                                    <rect x="7" y="15.3137" width="12" height="2" rx="1" transform="rotate(-45 7 15.3137)" fill="black" />
+                                                    <rect x="8.41422" y="7" width="12" height="2" rx="1" transform="rotate(45 8.41422 7)" fill="black" />
+                                                </svg>
+                                            </span>
+                                            @endif
+                                         <!--end::Svg Icon-->
+                                     </div>
+                                 </div>
+                                 <!--end::Due-->
+
+                                <!--begin::Due-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                     <div class="d-flex align-items-center mb-">
+                                         <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Booking Type</span>
+                                         <span class="svg-icon svg-icon-1 svg-icon-success">
+                                            @if ($doctor->book_type == 'chat')                                             
+                                            <span class="badge badge-light fw-bolder me-auto px-4 py-3">Chat</span>
+                                             @else
+                                             <span class="badge badge-light fw-bolder me-auto px-4 py-3">Video</span>
+                                            @endif
+                                         </span>
+                                         <!--end::Svg Icon-->
+                                     </div>
+                                 </div>
+                                 <!--end::Due-->
+                                <!--begin::Due-->
+                                <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                     <div class="d-flex align-items-center mb-">
+                                         <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Time Block</span>
+                                         <span class="svg-icon svg-icon-1 svg-icon-success">
+                                           
+                                             <span class="badge badge-light fw-bolder me-auto px-4 py-3">{{ $doctor->time_slot }}</span>
+                                            
+                                         </span>
+                                         <!--end::Svg Icon-->
+                                     </div>
+                                 </div>
+                                 <!--end::Due-->
+                               
+                                </div>
+                            </div>
+
+                    
+
+                        </div>
+                        <!--end::Body-->
+                    </div>
+                </div>
+
+
+
+                 <!--begin::Modal - View preconsulsation form-->
                 <div class="modal fade" id="form{{$key}}" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog mw-650px">
@@ -137,7 +232,7 @@
                                 <!--end::Title-->
                                 <!--begin::Description-->
                                 <div class="text-muted fw-bold fs-5">
-                                    {{$doctor['patient']['first_name']}}  {{$doctor['patient']['middle_name']}}  {{$doctor['patient']['last_name']}}
+                                    {{ @$doctor['patient']['first_name']}}  {{ @$doctor['patient']['middle_name']}}  {{ @$doctor['patient']['last_name']}}
                                 </div>
                                 <!--end::Description-->
                             </div>
@@ -158,7 +253,7 @@
                                         <!--begin::Details-->
                                         <div class="ms-6">
                                             <!--begin::Name-->
-                                            <img @if($doctor['patient']['picture'] == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$doctor['patient']['picture']}}" @endif alt="" class="w-25" />
+                                            <img @if( @$doctor['patient']['picture'] == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{ @$doctor['patient']['picture']}}" @endif alt="" class="w-25" />
 
                                             
                                         </div>
@@ -433,7 +528,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header" id="kt_modal_new_address_header">
                         <!--begin::Modal title-->
-                        <h2>Send Video Chat Link to {{$doctor['patient']['first_name']}}  {{$doctor['patient']['middle_name']}}  {{$doctor['patient']['last_name']}}</h2>
+                        <h2>Send Video Chat Link to {{ @$doctor['patient']['first_name']}}  {{ @$doctor['patient']['middle_name']}}  {{ @$doctor['patient']['last_name']}}</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
                         <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
@@ -453,8 +548,6 @@
                         <div class="modal-body py-10 px-lg-17">
                         <!--begin::Scroll-->
                         <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
-                            
-          
     
                             <!--begin::Input group-->
                             <div class="row mb-5">
@@ -514,7 +607,7 @@
 
 
 
-            <!--begin::Modal - New faculty-->
+            <!--begin::Modal - prescription-->
             <div class="modal fade" id="subscription" tabindex="-1" aria-hidden="true">
             <!--begin::Modal dialog-->
             <div class="modal-dialog modal-dialog-centered mw-650px">

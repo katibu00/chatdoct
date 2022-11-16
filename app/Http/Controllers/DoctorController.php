@@ -120,7 +120,8 @@ class DoctorController extends Controller
     public function MyPatients()
     {
 
-        $data['doctors'] = Booking::where('doctor_id', Auth::user()->id)->where('status', 1)->get();
+        $data['doctors'] = Booking::with(['patient','book'])->where('doctor_id', Auth::user()->id)->where('status', 1)->get();
+        // dd($data['doctors']);
         return view('doctor.reservations', $data);
     }
     public function Chat()
