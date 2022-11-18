@@ -124,6 +124,66 @@ class DoctorController extends Controller
         // dd($data['doctors']);
         return view('doctor.reservations', $data);
     }
+    public function sortPatients(Request $request)
+    {
+       if($request->status == 'all')
+       {
+           $data['doctors'] = Booking::with(['patient','book'])->where('doctor_id', Auth::user()->id)->get();
+        }else
+        {
+            $data['doctors'] = Booking::with(['patient','book'])->where('doctor_id', Auth::user()->id)->where('status', $request->status)->get();
+        }
+
+        if( $data['doctors']->count() < 1)
+        {
+            Toastr::warning('No data Found.', 'Not Found');
+            return redirect()->back();
+        }
+
+        return view('doctor.reservations', $data);
+    }
+    
+
+    public function markComplete($id)
+    {
+   
+       $booking = Booking::where('id',$id)->first();
+
+       if($booking->doctor_id != auth()->user()->id)
+       {
+        Toastr::error('Booking Not for you.', 'Error');
+        return redirect()->back();
+       }
+       if($booking){
+        $booking->status = 2;
+        $booking->update();
+
+        Toastr::success('Booking Marked Completed Successfully.', 'Done');
+        return redirect()->route('doctor.patients');
+
+       }
+
+       Toastr::error('Booking Not found.', 'Error');
+       return redirect()->back();
+    }
+    
+    public function appointTime(Request $request)
+    {
+        // dd($request->all());
+
+        $booking = Booking::where('id',$request->get_id)->first();
+
+        if($booking)
+        {
+            $booking->status = 1;
+            $booking->time = $request->time;
+            $booking->update();
+            Toastr::success('Time Appointed Successfully.', 'Done');
+            return redirect()->route('doctor.patients');
+        }
+        Toastr::error('Booking Not found.', 'Error');
+        return redirect()->back();
+    }
     public function Chat()
     {
 

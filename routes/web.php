@@ -149,6 +149,9 @@ Route::group(['prefix' => 'doctor', 'middleware' => ['auth']], function(){
 
 
     Route::get('/patients', [App\Http\Controllers\DoctorController::class, 'MyPatients'])->name('doctor.patients');
+    Route::post('/patients', [App\Http\Controllers\DoctorController::class, 'sortPatients'])->name('doctor.patients');
+    Route::get('/patients/mark_complete/{id}', [App\Http\Controllers\DoctorController::class, 'markComplete'])->name('doctor.patients.complete');
+    Route::post('/patients/appoint_time', [App\Http\Controllers\DoctorController::class, 'appointTime'])->name('doctor.patients.time');
     Route::get('/chat/patients', [App\Http\Controllers\DoctorController::class, 'Chat'])->name('doctor.chat');
 
     Route::post('/link', [App\Http\Controllers\DoctorController::class, 'link'])->name('link');

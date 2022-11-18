@@ -101,6 +101,7 @@ class PatientController extends Controller
         $book->doctor_id = $request->doctor_id;
         $book->time_slot = $request->time_slot;
         $book->book_type = $request->book_type;
+        $book->status = 0;
         $book->save();
 
         $patient = User::findorFail($id);
