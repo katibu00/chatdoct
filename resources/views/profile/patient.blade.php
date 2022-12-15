@@ -18,7 +18,6 @@
                         <div class="me-7 mb-4">
                             <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
                                 <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif  alt="image" />
-                                <div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
                             </div>
                         </div>
                         <!--end::Pic-->
@@ -55,14 +54,14 @@
                                             </svg>
                                         </span>
                                         <!--end::Svg Icon-->Patient</a>
-                                        <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
+<a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen018.svg-->
                                         <span class="svg-icon svg-icon-4 me-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                 <path opacity="0.3" d="M18.0624 15.3453L13.1624 20.7453C12.5624 21.4453 11.5624 21.4453 10.9624 20.7453L6.06242 15.3453C4.56242 13.6453 3.76242 11.4453 4.06242 8.94534C4.56242 5.34534 7.46242 2.44534 11.0624 2.04534C15.8624 1.54534 19.9624 5.24534 19.9624 9.94534C20.0624 12.0453 19.2624 13.9453 18.0624 15.3453Z" fill="black" />
                                                 <path d="M12.0624 13.0453C13.7193 13.0453 15.0624 11.7022 15.0624 10.0453C15.0624 8.38849 13.7193 7.04535 12.0624 7.04535C10.4056 7.04535 9.06241 8.38849 9.06241 10.0453C9.06241 11.7022 10.4056 13.0453 12.0624 13.0453Z" fill="black" />
                                             </svg>
-                                        </span>
+                                                                                </span>
                                         <!--end::Svg Icon-->@if($user->role == 'doctor')D{{""}}@elseif($user->role == 'patient')P{{""}}@elseif($user->role == 'pending')X{{""}}@elseif($user->role == 'admin')A{{""}}@endif{{$user->number}}{{$user->number}}</a>
                                         <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary mb-2">
                                         <!--begin::Svg Icon | path: icons/duotune/communication/com011.svg-->
@@ -128,14 +127,7 @@
                                         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                             <!--begin::Number-->
                                             <div class="d-flex align-items-center">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                <span class="svg-icon svg-icon-3 svg-icon-success me-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-                                                        <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
+                                               
                                                 <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="{{$user->balance}}" data-kt-countup-prefix="&#x20A6;">0</div>
                                             </div>
                                             <!--end::Number-->
@@ -148,14 +140,7 @@
                                         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                             <!--begin::Number-->
                                             <div class="d-flex align-items-center">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr065.svg-->
-                                                <span class="svg-icon svg-icon-3 svg-icon-danger me-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="11" y="18" width="13" height="2" rx="1" transform="rotate(-90 11 18)" fill="black" />
-                                                        <path d="M11.4343 15.4343L7.25 11.25C6.83579 10.8358 6.16421 10.8358 5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75L11.2929 18.2929C11.6834 18.6834 12.3166 18.6834 12.7071 18.2929L18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25C17.8358 10.8358 17.1642 10.8358 16.75 11.25L12.5657 15.4343C12.2533 15.7467 11.7467 15.7467 11.4343 15.4343Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
+                                              
                                                 <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="5">0</div>
                                             </div>
                                             <!--end::Number-->
@@ -168,14 +153,7 @@
                                         <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                             <!--begin::Number-->
                                             <div class="d-flex align-items-center">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-                                                <span class="svg-icon svg-icon-3 svg-icon-success me-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="black" />
-                                                        <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
+                                               
                                                 <div class="fs-2 fw-bolder" data-kt-countup="true" data-kt-countup-value="7" data-kt-countup-prefix="">0</div>
                                             </div>
                                             <!--end::Number-->

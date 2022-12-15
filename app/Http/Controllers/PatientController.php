@@ -21,19 +21,18 @@ class PatientController extends Controller
     public function DoctorsDetails($number)
     {
 
-        // if (Auth::guest()) {
+        if (Auth::guest()) {
 
-        //     return view('auth.login', compact('number'));
-        // }
+            return view('auth.login', compact('number'));
+        }
 
         $hour = date("H");
         $time = '';
-        // $timezone = date("e");
         if ($hour >= "6" && $hour < "12") {
             $time = "Morning";
         } else
         if ($hour >= "12" && $hour < "18") {
-            $time = "Afternoon";
+            $time = "Noon";
         } else
         if ($hour >= "18" && $hour < "24") {
             $time = "Evening";
@@ -41,7 +40,6 @@ class PatientController extends Controller
         if ($hour >= "1" && $time < "6") {
             $time = "Night";
         }
-
         $day = strtolower(date('l')) . 's';
 
         $data['user'] = User::where('number', $number)->first();
@@ -122,7 +120,7 @@ class PatientController extends Controller
     public function MyReservations()
     {
 
-        $data['doctors'] = Booking::where('patient_id', Auth::user()->id)->where('status', 1)->get();
+        $data['doctors'] = Booking::where('patient_id', Auth::user()->id)->where('status', 1)->orderBy('id','desc')->get();
         return view('patient.reservations', $data);
     }
     public function GetData(Request $request)

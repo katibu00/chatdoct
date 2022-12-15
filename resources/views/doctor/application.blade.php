@@ -354,7 +354,7 @@
                    
                            
                                      <!--begin::Input group-->
-                                     <div class="row mb-6">
+                                     <div class="row mb-3">
                                         <!--begin::Label-->
                                         <label class="col-lg-4 col-form-label required fw-bold fs-6">State and LGA</label>
                                         <!--end::Label-->
@@ -419,7 +419,7 @@
                                                 </div>
                                                 <!--end::Col-->
                                                 <!--begin::Col-->
-                                                <div class="col-lg-6 fv-row">
+                                                <div class="col-lg-6 fv-row mt-3">
                                                     <select
                                                         name="lga"
                                                         id="lga"
@@ -449,7 +449,7 @@
                         <!--end::Card body-->
                         <!--begin::Actions-->
                         <div class="card-footer d-flex justify-content-end py-6 px-9">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                         <!--end::Actions-->
                     </form>

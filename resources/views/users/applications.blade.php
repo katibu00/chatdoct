@@ -457,7 +457,7 @@
 																	</span></a>
 																	<!--end::Name-->
 																	<!--begin::Email-->
-																	<a href="/uploads/avatar/{{$user->certificate}}" target="_blank"><img src="/uploads/avatar/{{$user->certificate}}" alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" /></a>
+																	<a href="/uploads/{{$user->certificate}}" target="_blank"><img src="/uploads/{{$user->certificate}}" alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" /></a>
 																	<!--end::Email-->
 																</div>
 																<!--end::Details-->

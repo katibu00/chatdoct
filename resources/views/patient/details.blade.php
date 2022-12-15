@@ -1,9 +1,6 @@
 @extends('layouts.master')
 @section('PageTitle','Doctors Details')
 
-@section('css')
-<link href="/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
-@endsection
 @section('content')
 
 
@@ -24,6 +21,7 @@
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-100px symbol-circle mb-7">
                                     <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" />
+                                    <div class="bg-{{$availability == 'yes'?'success':'danger'}} position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"></div>
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Name-->
@@ -533,8 +531,9 @@
                                 <!--begin::Info-->
                                 <div class="d-flex">
                                     <!--begin::Avatar-->
-                                    <div class="symbol symbol-circle symbol-45px">
-                                        <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" />
+                                    <div class="symbol symbol-65px symbol-circle mb-5">
+                                        <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" height="100" width="100" />
+                                        <div class="bg-{{$availability == 'yes'?'success':'danger'}} position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"></div>
                                     </div>
                                     <!--end::Avatar-->
                                     <!--begin::Details-->
@@ -619,7 +618,7 @@
                                                     <select name="time_slot" id="time_slot" class="form-select form-select-solid mb-3"  data-control="select2" data-hide-search="true" data-placeholder="Time Slot..." >
                                                         <option></option>
                                                         <option value="Morning">Morning (6AM - 11:59PM)</option>
-                                                        <option value="Afternoon">Afternoon (12PM - 5:59PM)</option>
+                                                        <option value="Noon">Noon (12PM - 5:59PM)</option>
                                                         <option value="Evening">Evening (6PM - 11:59PM)</option>
                                                         <option value="Night">Night (12AM - 5:59AM)</option>
                                                     </select>

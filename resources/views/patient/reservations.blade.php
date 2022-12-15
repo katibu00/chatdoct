@@ -187,7 +187,19 @@
                                          </div>
                                      </div>
                                      <!--end::Due-->
-                                   
+                                     @if($doctor->time !== null)
+                                    <!--begin::Due-->
+                                    <div class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
+                                         <div class="d-flex align-items-center mb-">
+                                             <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Exact Time</span>
+                                             <span class="svg-icon svg-icon-1 svg-icon-success">
+                                                 <span class="badge badge-light fw-bolder me-auto px-4 py-3">{{ \Carbon\Carbon::createFromFormat('H:i:s', @$doctor->time)->format('h:i A') }}</span>
+                                             </span>
+                                             <!--end::Svg Icon-->
+                                         </div>
+                                     </div>
+                                     <!--end::Due-->
+                                    @endif
                                     </div>
                                 </div>
 
@@ -204,12 +216,14 @@
                                     </div>
                                     <!--begin::User-->
                                     @if ($doctor->book_type == 'chat')
+                                     @if($doctor->time !== null)
                                         <!--begin::User-->
                                         <div class="ml-1" data-bs-toggle="tooltip" title="Open chat with the doctor">
                                             <a href="{{ route('chats') }}"
                                                 class="btn btn-sm  btn-bg-light btn-active-color-primary">Chat</a>
                                         </div>
                                         <!--begin::User-->
+                                        @endif
                                     @else
                                         <div class="ml-1" data-bs-toggle="tooltip"
                                             title="View and copy the video conference link sent by the doctor">

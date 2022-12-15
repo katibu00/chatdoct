@@ -250,7 +250,7 @@
                                           <div class="d-flex align-items-center mb-">
                                               <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Status</span>
                                                 @if($doctor->status == 0)
-                                                <span class="badge badge-danger fw-bolder me-auto px-4 py-3">Awaiting Response</span>
+                                                <span class="badge badge-danger fw-bolder me-auto px-4 py-3">Awaiting Time Appointment</span>
                                                 @elseif($doctor->status == 1)
                                                 <span class="badge badge-success fw-bolder me-auto px-4 py-3">Active</span>
                                                 @elseif($doctor->status == 2)
@@ -261,18 +261,20 @@
                                       </div>
                                       <!--end::Due-->
                                       @if($doctor->status == 1)
+                                       @if(@$doctor->time)
                                         <!--begin::Due-->
                                         <div
                                           class="border border-gray-300 border-dashed rounded min-w-125px py-5  me-3 mb-3">
                                           <div class="d-flex align-items-center mb-">
                                               <span class="fw-bold fs-6 text-gray-800 flex-grow-1 pe-3">Exact Time</span>
                                                
-                                                <span class="badge badge-light-info fw-bolder me-auto px-4 py-3">{{ \Carbon\Carbon::createFromFormat('H:i:s', $doctor->time)->format('h:i A') }}</span>
+                                               <span class="badge badge-light-info fw-bolder me-auto px-4 py-3">{{ \Carbon\Carbon::createFromFormat('H:i:s', @$doctor->time)->format('h:i A') }}</span>
                                                
                                               
                                           </div>
                                       </div>
                                       <!--end::Due-->
+                                      @endif
                                       @endif
 
                                         <!--begin::Due-->

@@ -25,21 +25,51 @@
             <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
                 <!--begin::Followers-->
 
+                @php
+                    $hour = date("H");
+                    $time = '';
+                    if ($hour >= "6" && $hour < "12") {
+                        $time = "Morning";
+                    } else
+                    if ($hour >= "12" && $hour < "18") {
+                        $time = "Noon";
+                    } else
+                    if ($hour >= "18" && $hour < "24") {
+                        $time = "Evening";
+                    } else
+                    if ($hour >= "1" && $time < "6") {
+                        $time = "Night";
+                    }
+                    $day = strtolower(date('l')) . 's';
+                @endphp
+
                 @foreach ($users as $user)
                 <!--begin::Col-->
                 <div class="col-md-6 col-xxl-4">
+
+                    @php
+                        $schedules = explode(',', $user->$day);
+
+                        $availability = '';
+
+                        if (in_array($time, $schedules)) {
+                            $availability = 'yes';
+                        } else {
+                            $availability = 'no';
+                        }
+                    @endphp
                     <!--begin::Card-->
                     <div class="card">
                         <!--begin::Card body-->
                         <div class="card-body d-flex flex-center flex-column p-9">
                             <!--begin::Avatar-->
                             <div class="symbol symbol-65px symbol-circle mb-5">
-                                <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" />
-                                <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"></div>
+                                <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" height="100" width="100" />
+                                <div class="bg-{{$availability == 'yes'?'success':'danger'}} position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"></div>
                             </div>
                             <!--end::Avatar-->
                             <!--begin::Name-->
-                            <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Dr. {{$user->first_name}} {{$user->middle_name}} {{$user->last_name}}</a>
+                            <a href="#" class="fs-4 text-gray-800 text-hover-primary fw-bolder mb-0">Dr. {{ ucfirst($user->first_name) }} {{ ucfirst($user->middle_name) }} {{ ucfirst($user->last_name) }}</a>
                             <!--end::Name-->
                             <!--begin::Position-->
                             <div class="badge badge-lg badge-light-primary d-inline mb-1">{{$user->rank}}</div>
@@ -71,7 +101,7 @@
                                 <div class="d-flex flex-stack flex-grow-1">
                                 <div class="border border-dashed rounded min-w-125px py-3 px-4 mx-3 mb-3">
                                     <div class="fs-6 fw-bolder text-gray-700">{{$user->experience}}+</div>
-                                    <div class="fw-bold text-gray-400">Work Experience</div>
+                                    <div class="fw-bold text-gray-400">Experience</div>
                                 </div>
                                 </div>
                                 <!--end::Stats-->

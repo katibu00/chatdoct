@@ -21,7 +21,7 @@ class DoctorApplicationController extends Controller
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
              'rank' => 'required',
-            'phone' => 'required|tel',
+            'phone' => 'required',
             'address' => 'required',
             'state' => 'required',
             'lga' => 'required',
