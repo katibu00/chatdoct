@@ -120,8 +120,7 @@ class DoctorController extends Controller
     public function MyPatients()
     {
 
-        $data['doctors'] = Booking::with(['patient','book'])->where('doctor_id', Auth::user()->id)->where('status', 1)->orderBy('id','desc')->get();
-        // dd($data['doctors']);
+        $data['doctors'] = Booking::with(['patient','book'])->where('doctor_id', auth()->user()->id)->where('status',0)->orWhere('status', 1)->orderBy('id','desc')->get();
         return view('doctor.reservations', $data);
     }
     public function sortPatients(Request $request)

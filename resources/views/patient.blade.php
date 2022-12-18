@@ -74,23 +74,6 @@
                                     <div class="card-title">
                                         <h5>Recent Bookings</h5>
                                     </div>
-                                    <!--end::Card title-->
-                                    <!--begin::Card toolbar-->
-                                    {{-- <div class="card-toolbar">
-                                        <!--begin::Filter-->
-                                        <button type="button" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_payment">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
-                                                <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
-                                                <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->Add payment</button>
-                                        <!--end::Filter-->
-                                    </div> --}}
-                                    <!--end::Card toolbar-->
                                 </div>
                                 <!--end::Card header-->
                                 <!--begin::Card body-->
@@ -110,8 +93,6 @@
                                             </tr>
                                             <!--end::Table row-->
                                         </thead>
-                                        <!--end::Table head-->
-                                        <!--begin::Table body-->
                                         <tbody class="fs-6 fw-bold text-gray-600">
                                             <!--begin::Table row-->
                                             @foreach ($recent as $key => $booking)
@@ -120,8 +101,6 @@
                                                 <td>
                                                     {{$key + 1}}
                                                 </td>
-                                                <!--end::Invoice=-->
-                                                <!--begin::Status=-->
                                                 <td>
                                                    Dr. {{$booking['book']['first_name']}} {{$booking['book']['last_name']}}
                                                 </td>
@@ -142,25 +121,50 @@
                                 </div>
                                 <!--end::Card body-->
                             </div>
-                            <!--end::Card-->
-
-            
+                           
                         </div>
                         <!--end:::Tab pane-->
               
                     </div>
-                    <!--end:::Tab content-->
                 </div>
-                <!--end::Content-->
             </div>
             <!--end::Layout-->
 
-           
                 <!--begin::Row-->
                 <div class="row g-6 mb-6 g-xl-9 mb-xl-9">
                     <!--begin::Followers-->
                     <h3 class="fw-bolder my-2">Featured Doctors</h3>
+                    @php
+                        $hour = date("H");
+                        $time = '';
+                        if ($hour >= "6" && $hour < "12") {
+                            $time = "Morning";
+                        } else
+                        if ($hour >= "12" && $hour < "18") {
+                            $time = "Noon";
+                        } else
+                        if ($hour >= "18" && $hour < "24") {
+                            $time = "Evening";
+                        } else
+                        if ($hour >= "1" && $time < "6") {
+                            $time = "Night";
+                        }
+                        $day = strtolower(date('l')) . 's';
+                    @endphp
+
                     @foreach ($users as $user)
+
+                    @php
+                        $schedules = explode(',', $user->$day);
+
+                        $availability = '';
+
+                        if (in_array($time, $schedules)) {
+                            $availability = 'yes';
+                        } else {
+                            $availability = 'no';
+                        }
+                    @endphp
                     <!--begin::Col-->
                     <div class="col-md-6 col-xxl-4">
                         <!--begin::Card-->
@@ -170,7 +174,7 @@
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-65px symbol-circle mb-5">
                                     <img @if($user->picture == 'default.png') src="/uploads/default.png" @else src="/uploads/avatar/{{$user->picture}}" @endif alt="{{$user->first_name}} {{$user->last_name}}" class="w-100" />
-                                    <div class="bg-success position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"></div>
+                                    <div class="bg-{{$availability == 'yes'?'success':'danger'}} position-absolute rounded-circle translate-middle start-100 top-100 border border-4 border-white h-15px w-15px ms-n3 mt-n3"></div>
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Name-->
